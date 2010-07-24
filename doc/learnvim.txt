@@ -1,0 +1,570 @@
+*learnvim.txt*  A Suggested Path for Learning Vim
+
+This help file introduces fundamental concepts, offers concrete advice for
+correctly configuring a new Vim instance and outlines a progressive set of
+topics for the enthusiastic newcomer to study and practise.
+
+==============================================================================
+The Vim Learning Path ~
+
+|lv_B|		Beginner
+|lv_I|		Intermediate  (Unfinished)
+|lv_M|		Moderate      (Unfinished)
+|lv_A|		Advanced      (Unfinished)
+==============================================================================
+                                                *lv_B* *learnvim-Beginner*
+
+BEGINNER TOPICS ~
+
+Competencies ~
+
+On completing this section, you will:
+
+|lv_B_I|	Be able to use Vim's extensive help system.
+
+|lv_B_II|	Know where to find fundamental information on using Vim.
+
+|lv_B_III|	Know where the various configuration files for Vim are located
+		and what each one is generally responsible for.
+
+|lv_B_IV|	Know how to set options to control Vim's behaviour and
+		customise its interface.
+
+|lv_B_V|	Have created your own vimrc and gvimrc configuration files.
+
+------------------------------------------------------------------------------
+
+                                            *lv_B_I* *learnvim-Using-Help*
+USING HELP ~
+
+Vim's internal help system is comprehensive, well indexed and easy to
+navigate.  Beginners however often have difficulty knowing what to search for
+in the first place.  Several solutions to that problem are provided here.
+First is a guided tour of how to use Vim's help system.  Second is a broader
+way to search for information within the help system.
+
+Learning how to use Vim's Help: ~
+
+|help.txt|	A quick overview of navigating Vim's help system.
+
+|help-context|	A list of topic prepositions to specify the context of your
+		help search.
+
+|notation|	An explanation of how information is presented in the help
+		files.
+
+When newcomers see "complicated" commands in a Vim script or someone else's
+vimrc and try to search for them in the help system, they often fail to find
+what they're looking for.  Take for example the command sequence   gqip   to
+reformat a paragraph.  Doing   :help gqip   will return the depressing
+message, "Sorry, no help for gqip".  The problem here is in understanding
+Vim's command syntax: |gq| and |ip| are separate entities. |gq| is an operator
+command (one that takes a |motion|), whereas |ip| is an object (|text-object|
+to be precise).  The take-away here is this tip: Learn to 'take apart'
+commands you see in Vim.
+
+Broadening Your Search ~
+
+Use the ctrl+d key when you're typing ":help <term>".  It will list names that
+match the term in front of the cursor.  See |c_CTRL-D| for additional uses.
+
+Sometimes you don't know the exact search term you should be using to find
+what you need in the help files.  It can be frustrating trying to guess the
+precise turn of phrase the help-file author tagged.  Of course, it's obvious
+when you get there, but just like a good joke: until you hear the punch-line,
+you would never have guessed it would end like that.
+
+To search the help system and return all matches, use the |:helpgrep| command.
+
+------------------------------------------------------------------------------
+Recipe: Using helpgrep to broaden your search ~
+
+Problem: ~
+
+You want to search by hexadecimal value, for example the character represented
+by the value 0xAE (the ® symbol).  You've tried:
+>
+	:help hexadecimal
+	:help hex
+	:help search
+	:help / and then searching within the help file for "hex"
+<
+If you had persisted in searching for subsequent matches in the last attempt,
+you would have eventually found a table of |/character-classes| in which the
+answer to your problem does indeed lie.  In itself, that is not a bad thing,
+and it really didn't take too long to find the answer.  However, knowing that
+you should have jumped into the help system with :help /character-classes is
+by no means intuitive to the newcomer.
+
+Solution: ~
+>
+	:helpgrep hex
+	:cwindow
+	/search
+
+Produces: ~
+>
+	version7.txt|1018 col 48| |/\%x| \%x1a		search for character with 2 pos. hex number
+	version7.txt|1020 col 50| |/\%u| \%u12ab	search for character with 4 pos. hex number
+	version7.txt|1022 col 53| |/\%U| \%U1234abcd	search for character with 8 pos. hex number
+<
+Comments: ~
+
+Admittedly, the information in the version_n_.txt files would probably not be
+your primary resource, but it gives a good answer in this case.  The point is,
+you can navigate the quickfix window for the answer you're seeking.  All the
+normal Vim navigation methods are available, including hjkl, ctrl-f/ctrl-b,
+and the method used here, searching with /.
+
+Note: Because this helpfile describes this process, the quickfix window will
+have entries from here, and because "learnvim" precedes "version",
+alphabetically, you will need to repeat your search several times (use the  n
+key) to jump past the learnvim entries.
+
+------------------------------------------------------------------------------
+                                 *lv_B_II* *learnvim-Fundamental-Concepts*
+THE FUNDAMENTALS OF VIM ~
+
+Vim has a steep learning curve that will take several days or weeks to even
+begin turning from vertical.  Here is a good place to start:
+
+|tutor|		The vimtutor is an interactive tutorial which teaches the
+		fundamentals of Vim in around 30 minutes of hands-on fun.
+
+|quickref|	Vim's Quick Reference:  An awesome overview and cheat-sheet.
+		Of particular interest are the |option-list|, text objects
+		(|Q_to|) and pattern search summary (|Q_pa|).
+
+|lv_tips|	A collection of FAQs, Tips & Tricks, Howto's, recommendations
+		and recipes for becoming a proficient Vim user. <TODO>
+
+|vim-modes|	Vim is a modal editor.  Understanding the consequences and
+		advantages of that is essential to mastering Vim.  Be sure to
+		read the subsequent section on |mode-switching| too.
+
+|user-manual|	The Table of Contents for Vim's User Manual.
+
+Definitions ~
+
+screen		The whole area that Vim uses to work in.  This can be a
+		terminal emulator window.  Also called "the Vim window".
+
+buffer		A buffer is just the word for the contents of a file.  Each
+		buffer may be associated with one file path (the file it will
+		be written to when you :w).  A buffer may not have an
+		associated file path (like the empty buffer you get when you
+		first start Vim).
+
+window		A window is a place where a buffer can be displayed.  There is
+		always at least one window open.  A buffer can be displayed in
+		any number of windows simultaneously.  Having a buffer that
+		isn't displayed in a window is useful when switching between
+		different tasks, letting you walk away from half-finished
+		work.  Having a buffer that is displayed in two windows can be
+		useful when trying to work on one part of the buffer based
+		upon some context provided in another part of the buffer
+		that's far away.
+
+tab page	A tab page is a place to put a group of windows.  There is
+		always at least one tab page open.  Each tab must always have
+		at least one window in it.  The maximum number of windows is
+		bounded only by the size of the Vim window.
+
+Note: Trying to create a one-to-one relationship between tab pages and buffers
+is asking for trouble.  Lots of Vim commands change the buffer displayed in
+the current window, and some others create a new window in the current tab
+page.  Trying to lock a buffer to a single window inside a single tab page
+won't work; at least, not without cutting you off from many useful commands.
+
+------------------------------------------------------------------------------
+                                     *lv_B_III* *learnvim-Configuring-Vim*
+CONFIGURATION FILES ~
+
+/usr/share/vim/vimrc	The system-wide configuration file for both terminal
+			and GUI Vim.  This file is used only if the user does
+			not have a personal $HOME/.vimrc file.
+
+/usr/share/vim/gvimrc	The system-wide configuration file for GUI Vim.  This
+			file is used only if the user does not have a personal
+			$HOME/.gvimrc file
+
+$HOME/.vimrc		Personal configuration file for both terminal and GUI
+			Vim.  You should create your own $HOME/.vimrc file to
+			enable certain essential features, give sane values to
+			important options and customise Vim to your
+			preferences.  See |learnvim-vimrc| below for an
+			annotated example .vimrc file you can use to get
+			started.
+
+$HOME/.gvimrc		Personal configuration file for GUI Vim.  You should
+			create your own $HOME/.gvimrc file for the same
+			reasons as with the .vimrc file.  The $HOME/.gvimrc
+			file is also used to store GUI-specific settings like
+			your GUI colorscheme, font and menu & toolbar options.
+			See |learnvim-gvimrc| for an annotated example .gvimrc
+			file you can use to get started.
+
+------------------------------------------------------------------------------
+                                              *lv_B_IV* *learnvim-Options*
+CONFIGURATION OPTIONS ~
+
+Vim is highly configurable through what are referred to as |options|. Read
+through the beginning of that help file to understand how to show and set
+options. As a quick overview:
+
+- :set option=value	Sets "option" to "value"
+- :set option?		Shows the current value of "option"
+
+E.g. To check the current value of 'shiftwidth' and then change it to 4:
+>
+	:set shiftwidth?
+	:set shiftwidth=4
+<
+To search for options in Vim, always remember to use a single quote ( ' )
+character at the start of the option name to make sure your search doesn't
+clash with other entries in the help system. E.g.   :help 'exp   will find the
+'expandtab' option, but   :help exp   will find the |expression| evaluation
+entry.
+
+VIM OPTIONS BROWSER ~
+
+Use the |:options| command to show an interactive window of all Vim's settings
+including their current values and a brief description, grouped by function.
+
+------------------------------------------------------------------------------
+Recipe: Using the Options Browser to search for and change a Vim setting ~
+
+Problem: ~
+
+You want to change the bahaviour of something in Vim (like the tab & indent
+settings, or how the Toolbar is displayed in the GUI), but you don't know the
+option name and searching the help system doesn't appeal to you.
+
+Solution: ~
+
+For tabs and indents:
+>
+ 	:options
+<
+Scroll down the Table of Contents and press Enter on the '15 tabs and
+indenting' line. This will jump you to the set of options controlling how Vim
+manages indentation.
+
+Likewise, for the GUI Toolbar problem:
+>
+ 	:options
+<
+Scroll down or search for GUI (/GUI) and press Enter on the '10 GUI' line.
+
+Comments: ~
+
+Changing a value on any of the 'set' lines and pressing Enter will update your
+current settings. Add the 'set' line to your ~/.vimrc file (see
+|learnvim-vimrc| below) to make the change permanent. Actually, you should
+clean up the set line by removing the initial, unset version of the option
+before adding it to your ~/.vimrc file.
+
+Example: ~
+
+Say you're browsing the options and decide that you want to enable 'smarttab'.
+You see the line:
+>
+ 	set nosta	sta
+<
+If you press Enter on that line then you will enable smarttabs. Copying that
+line to your ~/.vimrc file will work, but it's unnecessary and unsightly to
+have the option turned off and then on like that. So, when adding this to your
+~/.vimrc, change the line like this:
+>
+ 	set sta
+<
+Actually, it is a good practice to use the full name of an option so that when
+you come back to your ~/.vimrc file in six months time you will be able to
+understand what the setting means. So, change that line to:
+>
+ 	set smarttab
+<
+------------------------------------------------------------------------------
+                                                 *lv_B_V* *learnvim-vimrc*
+MAKING YOUR PERSONAL CONFIGURATION PERSISTENT ~
+
+Your Own vimrc File ~
+
+Put this in your $HOME/.vimrc :
+>
+	set nocompatible               " NEVER change this! Use Vim mode, not vi mode.
+	filetype plugin indent on      " Enable automatic settings based on file type
+	syntax on                      " Enable color syntax highlighting
+
+	""""""""""
+	" Options
+	""""""""""
+	" Use :help 'option (including the ' character) to learn more about each one.
+	"
+	" Buffer (File) Options:
+	set hidden                     " Edit multiple unsaved files at the same time
+	set confirm                    " Prompt to save unsaved changes when exiting
+	" Keep various histories between edits
+	set viminfo='1000,f1,<500,:100,/100
+
+	" Search Options:
+	set hlsearch                   " Highlight searches. See below for more.
+	set ignorecase                 " Do case insensitive matching...
+	set smartcase                  " ...except when using capital letters
+	set incsearch                  " Incremental search
+
+	" Insert (Edit) Options:
+	set backspace=indent,eol,start " Better handling of backspace key
+	set autoindent                 " Sane indenting when filetype not recognised
+	set nostartofline              " Emulate typical editor navigation behaviour
+	set nopaste                    " Start in normal (non-paste) mode
+	set pastetoggle=<f11>          " Use <F11> to toggle between 'paste' and 'nopaste'
+
+	" Status / Command Line Options:
+	set wildmenu                   " Better commandline completion
+	set wildmode=longest:full,full " Expand match on first Tab complete
+	set showcmd                    " Show (partial) command in status line.
+	set laststatus=2               " Always show a status line
+	set cmdheight=2                " Prevent "Press Enter" message after most commands
+	" Show detailed information in status line
+	set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
+
+	" Interface Options:
+	set number                     " Display line numbers at left of screen
+	set visualbell                 " Flash the screen instead of beeping on errors
+	set t_vb=                      " And then disable even the flashing
+	set mouse=a                    " Enable mouse usage (all modes) in terminals
+	" Quickly time out on keycodes, but never time out on mappings
+	set notimeout ttimeout ttimeoutlen=200
+
+	" Indentation Options:
+	set tabstop=8                  " NEVER change this!
+	" Change the '2' value below to your preferred indentation level
+	set shiftwidth=softtabstop=2   " Number of spaces for each indent level
+	set expandtab                  " Even when pressing <Tab>
+
+	"""""""
+	" Maps
+	"""""""
+	"
+	" F1 to be a context sensitive keyword-under-cursor lookup
+	nnoremap <F1> :help <C-R><C-W><CR>
+
+	" Reformat current paragraph
+	nnoremap Q gq}
+
+	" Move cursor between visual lines on screen
+	nnoremap <Up> gk
+	nnoremap <Down> gj
+
+	" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+	" which is the default
+	map Y y$
+
+	" Map <C-L> (redraw screen) to also turn off search highlighting until the
+	" next search
+	nnoremap <C-L> :nohl<CR><C-L>
+
+	" Toggle search highlighting
+	nnoremap <C-Bslash>       :set hls!<bar>:set hls?<CR>
+	inoremap <C-Bslash>       <Esc>:set hls!<bar>:set hls?<CR>a
+
+	""""""""""""""""
+	" Auto commands
+	""""""""""""""""
+	"
+	if has("autocmd")
+	  augroup filetype
+	    autocmd!              " Remove ALL autocommands for the current group.
+
+	    " Jump to last-known-position when editing files
+	    " Note: The | character is used in Vim as a command separator (like ; in C)
+	    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	  augroup END
+	endif
+<
+Additional Options to Investigate ~
+
+Read about the following options and consider adding them to your $HOME/.vimrc
+too:
+
+- 'colorscheme'	See |:syn-default-override|.  There are many more themes to
+ 		choose from at htp://www.vim.org/scripts/
+
+- 'whichwrap'	Control which keys allow you to wrap around start and end of
+  		lines.
+
+- 'incsearch'	Incremental search - find while you type.
+
+- 'spell' and	Enable spell checking in your preferred language.
+  'spelllang'
+
+- 'backup'	To keep backups of your files. There are several other related
+		options with "backup" in their name.
+
+------------------------------------------------------------------------------
+                                                         *learnvim-gvimrc*
+MAKING YOUR PERSONAL CONFIGURATION PERSISTENT (GUI) ~
+
+Your Own gvimrc File ~
+
+Put this in your $HOME/.gvimrc :
+>
+	set t_vb=                      " Disable screen flash on error
+<
+Note: Some options, like t_vb, need to be set in both $HOME/.vimrc and
+$HOME/.gvimrc because they are reset when the GUI is started.
+
+Additional Options to Investigate ~
+
+- 'colorscheme'	If you want to have the GUI use a different scheme to terminal
+		Vim.
+
+- 'guifont'	Font (or list of fonts to try) to use in the GUI. See the tip
+  below about setting your guifont.
+
+- 'guioptions'	Control which components and options of the GUI to use.
+
+==============================================================================
+                                            *lv_I* *learnvim-Intermediate*
+INTERMEDIATE TOPICS ~
+
+Competencies ~
+
+On completing this section, you will:
+
+|lv_I_I|	Be able to ...
+
+------------------------------------------------------------------------------
+
+Intermediate
+------------
+motion.txt (essential reading at this level)
+	v/foo<CR>x is definitely easier than ma/foo<CR>d`a
+buffers (:ls, :b #, :b name, bn, bp, ctrl-6, etc)
+windows (:only, c-w et al)
+tags
+:h ins-completion
+the gx commands
+
+:set paste and :set pastetoggle
+or with :set mouse=a you can middle-click to paste without worrying about :set paste / nopaste / pastetoggle
+Note: You need a vim compiled with X11 for access to the clipboard (echo has('X11')) will show 1 if you do.
+
+Return to where you last jumped from with `` or ''. `` is line+character, '' is line only. :help mark-motions
+
+Use |=| to reformat source code.
+
+Use |:retab| to change between tabs and spaces.
+
+Use abbreviations
+
+==============================================================================
+                                                *lv_M* *learnvim-Moderate*
+MODERATE TOPICS ~
+
+Competencies ~
+
+On completing this section, you will:
+
+|lv_M_I|	Be able to ...
+
+------------------------------------------------------------------------------
+
+Upper Intermediate
+------------------
+bufdo
+	:bufdo e    to re-read all open buffers from disk
+windo
+args and argdo
+macros
+	:h key-notation
+
+	record with qa yadda-yadda q
+	add additional commands with capital letter: qA more-yadda q
+	paste into document with "ap to edit commands
+	re-read into register with 0"ay$ when cursor is on the line of commands
+	@a to execute
+	@@ to re-execute last macro (or : command, incidentally)
+	10@a to run macro 10 times
+	999@a to run it so many times it approximates 'repeat for as many times as possible'
+	but see the next para about causing the macro to have a fail case or making it
+	recursive.
+
+	with a command that will fail, the macro aborts execution, so 1000@x will
+	allow you to run it until it can't (providing you give a good fail, like
+	moving down a line (so it doesn't wrap around the buffer and actually try to
+	execute 1000 times)).
+
+	Use recursive macros.
+
+:h expand()
+:h filename-modifiers
+
+maps
+	map \x :tabe <c-r>=expand('%:h')<CR>/
+
+==============================================================================
+                                                *lv_A* *learnvim-Advanced*
+ADVANCED TOPICS ~
+
+Competencies ~
+
+On completing this section, you will:
+
+|lv_A_I|	Be able to ...
+
+------------------------------------------------------------------------------
+
+Advanced
+--------
+custom commands
+customising the menu in gvim
+vim scripting
+variable scope (g: s: a:, etc)
+writing plugins
+:h feature-list - know if we're running in vim or gvim  --  if has("gui_running")
+
+==============================================================================
+CREDITS ~
+
+Thanks to the good people at FreeNode#vim for patiently answering my
+questions, and their many great suggestions.
+
+Special thanks to Zathrus for giving a detailed list of topics for this
+tutorial.
+
+The buffer, window and tab-page definitions were shamelessly copied from the
+following resource created by godlygeek: http://vim.pastey.net/115548.
+
+Large parts of the vimrc file were copied from the very helpful
+http://vim.wikia.com (http://vim.wikia.com/wiki/Example_vimrc).  A more
+annotated version of the vimrc options can be found at
+http://github.com/loota/vimfiles/blob/master/vim_usual_options.txt.
+
+==============================================================================
+
+Vim FAQ
+http://vim.wikia.com/wiki/Vim_IRC_FAQ
+
+Best Plugins (need more)
+* NERD Tree
+* NERD Commenter
+* Surround
+* TagList
+* CSApprox
+
+Vim Links  (urls are rarely a good idea to embed in help text because of their transient nature :-/ )
+---------
+
+* http://vim.wikia.com/wiki/Vim_Tips_Wiki
+* http://vim.wikia.com/wiki/Example_vimrc
+* http://vim.wikia.com/wiki/New_to_Vim
+* http://vim.wikia.com/wiki/Vim_IRC_FAQ
+* http://vim.wikia.com/wiki/VimTip882
+* http://vim.wikia.com/wiki/Vim_documentation
+* http://vim.wikia.com/wiki/Creating_new_text_objects
+* http://vimdoc.sourceforge.net/
+* http://github.com/loota/vimfiles/blob/master/vim_usual_options.txt
+
+ vim:noet:sw=8:nosmarttab:sts=0:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:noro:modifiable:
