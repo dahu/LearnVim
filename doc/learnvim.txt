@@ -4,17 +4,27 @@ This help file introduces fundamental concepts, offers concrete advice for
 correctly configuring a new Vim instance and outlines a progressive set of
 topics for the enthusiastic newcomer to study and practise.
 
-==============================================================================
-The Vim Learning Path ~
+This is not a typical tutorial for Vim in that many topics are merely
+introduced here with further study deferred to the excellent Vim Reference
+Guide (|reference_toc|) and User Manual (|usr-toc|).
 
-|lv_B|		Beginner
-|lv_I|		Intermediate  (Unfinished)
-|lv_M|		Moderate      (Unfinished)
-|lv_A|		Advanced      (Unfinished)
-==============================================================================
-                                                *lv_B* *learnvim-Beginner*
+This file is structured with the following conventions:
 
-BEGINNER TOPICS ~
+CHAPTER HEADINGS are all caps and preceded by a line of # characters.
+SECTIONS within a Chapter are all caps and preceded by a line of = characters.
+1. Topics within a Section are numbered, in Title Case.
+Recipes are blocked in lines of - characters.
+
+##############################################################################
+THE VIM LEARNING PATH                             *learnvim-path-overview*
+
+|learnvim-Beginner|
+|learnvim-Intermediate|
+|learnvim-Moderate|
+|learnvim-Advanced|
+
+##############################################################################
+BEGINNER TOPICS                                 *lv_B* *learnvim-Beginner*
 
 Competencies ~
 
@@ -24,18 +34,15 @@ On completing this section, you will:
 
 |lv_B_II|	Know where to find fundamental information on using Vim.
 
-|lv_B_III|	Know where the various configuration files for Vim are located
-		and what each one is generally responsible for.
+|lv_B_III|	Know where the various configuration files for Vim are
+		located, what each one is responsible for, and how to set
+		options to control Vim's behaviour and customise its
+		interface.
 
-|lv_B_IV|	Know how to set options to control Vim's behaviour and
-		customise its interface.
+|lv_B_IV|	Have created your own vimrc and gvimrc configuration files.
 
-|lv_B_V|	Have created your own vimrc and gvimrc configuration files.
-
-------------------------------------------------------------------------------
-
-                                            *lv_B_I* *learnvim-Using-Help*
-USING HELP ~
+==============================================================================
+USING HELP                                 *lv_B_I* *learnvim-Using-Help* 
 
 Vim's internal help system is comprehensive, well indexed and easy to
 navigate.  Beginners however often have difficulty knowing what to search for
@@ -43,16 +50,48 @@ in the first place.  Several solutions to that problem are provided here.
 First is a guided tour of how to use Vim's help system.  Second is a broader
 way to search for information within the help system.
 
-Learning how to use Vim's Help: ~
+1. Learning how to use Vim's Help        *learnvim-essential-introduction*
+                                 
+To read a help topic, move your cursor to that topic and type |ctrl-]|. To
+return to where you came from, type |ctrl-t|. Try that now by reading the next
+three essential (and brief) help topics. You will think I jest when I say that
+a 200 line help file is brief, but I don't actually want you to read -all- of
+that file -- just the first section. Sections are shown in red and are usually
+right-aligned.
 
-|help.txt|	A quick overview of navigating Vim's help system.
+|help.txt|	A quick overview of navigating Vim's help system. Read
+                everything in the first section - about 10 lines, and then
+		jump back here.
+
+		Note: that same help file is shown if you type the   |:help|
+		      command without a topic.
 
 |help-context|	A list of topic prepositions to specify the context of your
-		help search.
+		help search. Again, this is only about 10 lines long.
+
+		Note: The astute reader will notice that not only does it come
+		      from the same file (|help.txt|) as the previous section
+		      I asked you to read, but it was the very next section!
+		      Why didn't I just ask you to keep reading through that
+		      file while you were there? Because practising to
+		      navigate Vim's help system is the most important skill
+		      you first need to learn in mastering Vim.
 
 |notation|	An explanation of how information is presented in the help
-		files.
+		files. -Now- I'm asking you to read 200+ lines in all of
+		Section 4 of |intro.txt|. Actually, you can get away with
+		skimming this one - but make sure you get a feel for how Vim's
+		help files are layed out.
 
+		Note: You may think that something so usefully named as
+		      'intro.txt' should well be read in full. If you're into
+		      reading gobs of documentation, go hard. However, to save
+		      you time and trouble, this section of LearnVim has what
+		      is considered to be the essential knowledge you need at
+		      this stage.
+
+2. Trees Within The Forest                  *learnvim-take-apart-commands*
+                          
 When newcomers see "complicated" commands in a Vim script or someone else's
 vimrc and try to search for them in the help system, they often fail to find
 what they're looking for.  Take for example the command sequence   gqip   to
@@ -63,11 +102,18 @@ command (one that takes a |motion|), whereas |ip| is an object (|text-object|
 to be precise).  The take-away here is this tip: Learn to 'take apart'
 commands you see in Vim.
 
-Broadening Your Search ~
+3. Broadening Your Search                     *learnvim-expand-help-terms* 
+                         
+Use the ctrl-d key when you're typing ":help <term>".  It will list matches
+for the term in front of the cursor.  See |c_CTRL-D| for additional uses.
 
-Use the ctrl+d key when you're typing ":help <term>".  It will list names that
-match the term in front of the cursor.  See |c_CTRL-D| for additional uses.
+Another useful key is <Tab> which also expands terms on the Vim command line.
+Depending on your settings ('wildmode' and 'wildmenu'), <Tab> will either
+cycle through available matches or show a similar list to ctrl-d (and allow
+you to cycle through that list).
 
+4. The Shotgun Approach                                *learnvim-helpgrep*
+                    
 Sometimes you don't know the exact search term you should be using to find
 what you need in the help files.  It can be frustrating trying to guess the
 precise turn of phrase the help-file author tagged.  Of course, it's obvious
@@ -76,9 +122,8 @@ you would never have guessed it would end like that.
 
 To search the help system and return all matches, use the |:helpgrep| command.
 
-------------------------------------------------------------------------------
-Recipe: Using helpgrep to broaden your search ~
-
+Recipe: Using helpgrep to broaden your search   *learnvim-recipe-helpgrep*
+-------------------------------------------------------------------------{{{1
 Problem: ~
 
 You want to search by hexadecimal value, for example the character represented
@@ -120,10 +165,23 @@ Note: Because this helpfile describes this process, the quickfix window will
 have entries from here, and because "learnvim" precedes "version",
 alphabetically, you will need to repeat your search several times (use the  n
 key) to jump past the learnvim entries.
+-------------------------------------------------------------------------1}}}
 
-------------------------------------------------------------------------------
-                                 *lv_B_II* *learnvim-Fundamental-Concepts*
-THE FUNDAMENTALS OF VIM ~
+5. More Resources                           *learnvim-community-resources*
+
+The Vim community is strong, helpful and polite. The vim.wikia.com site, IRC
+channel and mailing list are all great sources of information in learning Vim:
+
+* http://vim.wikia.com/wiki/Learn_to_use_help 
+* Mailing Lists - http://www.vim.org/community.php
+* IRC channel #vim on irc://irc.freenode.net
+
+==============================================================================
+THE FUNDAMENTALS OF VIM          *lv_B_II* *learnvim-Fundamental-Concepts*
+
+<TODO>: General Remarks
+
+1. Climbing the Vim Learning Curve                   *learnvim-beginnings*
 
 Vim has a steep learning curve that will take several days or weeks to even
 begin turning from vertical.  Here is a good place to start:
@@ -135,16 +193,23 @@ begin turning from vertical.  Here is a good place to start:
 		Of particular interest are the |option-list|, text objects
 		(|Q_to|) and pattern search summary (|Q_pa|).
 
-|lv_tips|	A collection of FAQs, Tips & Tricks, Howto's, recommendations
-		and recipes for becoming a proficient Vim user. <TODO>
-
 |vim-modes|	Vim is a modal editor.  Understanding the consequences and
 		advantages of that is essential to mastering Vim.  Be sure to
 		read the subsequent section on |mode-switching| too.
 
 |user-manual|	The Table of Contents for Vim's User Manual.
 
-Definitions ~
+There are also some really good Beginner Tutorials available online for Vim:
+
+* http://www.eng.hawaii.edu/Tutor/vi.html
+* http://blog.interlinked.org/tutorials/vim_tutorial.html
+* http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
+
+Note: That's not a typing mistake in the first link above. It -is- a vi
+tutorial! Vim came from vi, so many of Vim's fundemental editing features are
+also available in vi.
+
+2. Definitions                                *learnvim-basic-definitions*
 
 screen		The whole area that Vim uses to work in.  This can be a
 		terminal emulator window.  Also called "the Vim window".
@@ -176,9 +241,14 @@ the current window, and some others create a new window in the current tab
 page.  Trying to lock a buffer to a single window inside a single tab page
 won't work; at least, not without cutting you off from many useful commands.
 
-------------------------------------------------------------------------------
-                                     *lv_B_III* *learnvim-Configuring-Vim*
-CONFIGURATION FILES ~
+==============================================================================
+CONFIGURING VIM                      *lv_B_III* *learnvim-Configuring-Vim*
+
+<TODO> overview
+Vim has many options which can be set at runtime within Vim and can be put in
+configuration files to make them permanent.
+
+1. Files                                    *learnvim-configuration-files*
 
 /usr/share/vim/vimrc	The system-wide configuration file for both terminal
 			and GUI Vim.  This file is used only if the user does
@@ -204,9 +274,11 @@ $HOME/.gvimrc		Personal configuration file for GUI Vim.  You should
 			See |learnvim-gvimrc| for an annotated example .gvimrc
 			file you can use to get started.
 
-------------------------------------------------------------------------------
-                                              *lv_B_IV* *learnvim-Options*
-CONFIGURATION OPTIONS ~
+Note:                                   *learnvim-personal-vimrc-filename*
+The table above refers to the personal vimrc file as $HOME/.vimrc, and this is
+true for Linux and Mac systems, but in Windows it's located in $HOME/_vimrc.
+
+2. Configuration Options                  *learnvim-configuration-options*
 
 Vim is highly configurable through what are referred to as |options|. Read
 through the beginning of that help file to understand how to show and set
@@ -214,6 +286,7 @@ options. As a quick overview:
 
 - :set option=value	Sets "option" to "value"
 - :set option?		Shows the current value of "option"
+- :echo &option         An alternate way to show the value of "option"
 
 E.g. To check the current value of 'shiftwidth' and then change it to 4:
 >
@@ -226,14 +299,13 @@ clash with other entries in the help system. E.g.   :help 'exp   will find the
 'expandtab' option, but   :help exp   will find the |expression| evaluation
 entry.
 
-VIM OPTIONS BROWSER ~
+3. GUI Option Browser                            *learnvim-option-browser*
 
 Use the |:options| command to show an interactive window of all Vim's settings
 including their current values and a brief description, grouped by function.
 
-------------------------------------------------------------------------------
 Recipe: Using the Options Browser to search for and change a Vim setting ~
-
+-------------------------------------------------------------------------{{{1
 Problem: ~
 
 You want to change the bahaviour of something in Vim (like the tab & indent
@@ -283,18 +355,18 @@ you come back to your ~/.vimrc file in six months time you will be able to
 understand what the setting means. So, change that line to:
 >
  	set smarttab
-<
-------------------------------------------------------------------------------
-                                                 *lv_B_V* *learnvim-vimrc*
-MAKING YOUR PERSONAL CONFIGURATION PERSISTENT ~
+-------------------------------------------------------------------------1}}}
 
-Your Own vimrc File ~
+==============================================================================
+MAKING SETTINGS PERMANENT          *lv_B_IV* *learnvim-permanent-settings*
 
-Put this in your $HOME/.vimrc :
+1. Your Own vimrc File                                    *learnvim-vimrc*
+
+Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 >
 	set nocompatible               " NEVER change this! Use Vim mode, not vi mode.
 	filetype plugin indent on      " Enable automatic settings based on file type
-	syntax on                      " Enable color syntax highlighting
+	syntax on                      " Enable colour syntax highlighting
 
 	""""""""""
 	" Options
@@ -383,7 +455,7 @@ Put this in your $HOME/.vimrc :
 	  augroup END
 	endif
 <
-Additional Options to Investigate ~
+2. Additional Options to Investigate   *learnvim-vimrc-additional-options*
 
 Read about the following options and consider adding them to your $HOME/.vimrc
 too:
@@ -402,11 +474,8 @@ too:
 - 'backup'	To keep backups of your files. There are several other related
 		options with "backup" in their name.
 
-------------------------------------------------------------------------------
-                                                         *learnvim-gvimrc*
-MAKING YOUR PERSONAL CONFIGURATION PERSISTENT (GUI) ~
-
-Your Own gvimrc File ~
+                                                   
+3. Your Own gvimrc File                                  *learnvim-gvimrc*
 
 Put this in your $HOME/.gvimrc :
 >
@@ -415,7 +484,7 @@ Put this in your $HOME/.gvimrc :
 Note: Some options, like t_vb, need to be set in both $HOME/.vimrc and
 $HOME/.gvimrc because they are reset when the GUI is started.
 
-Additional Options to Investigate ~
+4. Additional Options to Investigate  *learnvim-gvimrc-additional-options*
 
 - 'colorscheme'	If you want to have the GUI use a different scheme to terminal
 		Vim.
@@ -425,9 +494,9 @@ Additional Options to Investigate ~
 
 - 'guioptions'	Control which components and options of the GUI to use.
 
-==============================================================================
-                                            *lv_I* *learnvim-Intermediate*
-INTERMEDIATE TOPICS ~
+
+##############################################################################
+INTERMEDIATE TOPICS                         *lv_I* *learnvim-Intermediate*
 
 Competencies ~
 
@@ -435,23 +504,109 @@ On completing this section, you will:
 
 |lv_I_I|	Be able to ...
 
-------------------------------------------------------------------------------
+==============================================================================
+MOTION                                                   *learnvim-motion*
 
-Intermediate
-------------
-motion.txt (essential reading at this level)
-	v/foo<CR>x is definitely easier than ma/foo<CR>d`a
+If you haven't read all of |motion.txt| yet, now would be a good time. I know,
+though, right? It's like 1300 lines long! That'd take hours to read, let alone
+absorb... Well, I could say the journey of a thousand miles begins with the
+first step, or the secret to eating an elephant is to do so bite at a time,
+but I won't. Instead, I offer this path through the motion morass:
+
+Operators & Text Objects ~
+
+One of Vim's most powerful features is its ability to perform an action over a
+specific portion of text. In Vim speak, the action is called an |operator| and
+the portion of text is called a |text-object|. Get to know these operators
+first:
+
+|c|	(change) To delete a portion of text and enter insert mode immediately.
+|d|	(delete) To delete a portion of text.
+|y|	(yank) To copy a portion of text to the unnamed register.
+
+And start using them with these text objects:
+
+|w|	(word) To operate from the current word under the cursor.
+
+EXERCISES ~
+
+Copy the following line to your practice file (|setting-up-a-practice-file|):
+>
+  Angels and ministers of grace defend us.
+<
+Start with your cursor anywhere on that line in your practice buffer.
+Type the following commands:
+
+Commands:             Description: ~
+
+1. 0                  - move to the first character on the line |0|
+2. 3w                 - move forward three words (to "ministers")
+3. cwVimmers<Esc>     - change the word "ministers" to "Vimmers"
+
+
+
+==============================================================================
+SEARCH AND REPLACE                               *learnvim-search-replace*
+
+A common mistake is to think that the search and replace (|:substitute|)
+command in Vim is:
+>
+    :%s/find/replace/flags
+<
+and that gets people by for a while, but there's a conceptual gap in there
+waiting to bite the early learner. The actual search and replace command in
+Vim is:
+>
+    :[range]s/find/replace/flags [count]
+<
+where   %   in the first command is a range. It means "the whole buffer" and
+is equivalent to the longer form:   1,$   See |cmdline-ranges|.
+
+There is much more to learn about the |:substitute| command. For instance, the
+astute reader will have noticed that I didn't talk about [count].
+
+==============================================================================
+MARKS                                                     *learnvim-marks*
+
+TODO:
+* Introduce marks
+* Return to where you last jumped from with `` or ''. `` is line+character, '' is line only. :help mark-motions
+
+Law of the Instrument ~
+
+"It is tempting, if the only tool you have is a hammer, to treat everything as
+if it were a nail."                                   -- Abraham Maslow (1966)
+
+Marks are great, but don't fall into the trap of over using your shiny, new
+toys for every problem at hand. Take for example the operation of deleting
+everything from the current cursor to a word you can see a few lines below in
+your document. Having just learned about marks, it might seem like a good idea
+to do this:
+>
+    ma/foo<CR>d`a
+<
+But there's a much better way to do that:
+>
+    d/foo<CR>
+<
+You're going to jump to your practise file and try that out now, aren't you? ;)
+See |setting-up-a-practice-file| if you haven't done so already.
+
+==============================================================================
+
 buffers (:ls, :b #, :b name, bn, bp, ctrl-6, etc)
 windows (:only, c-w et al)
 tags
 :h ins-completion
 the gx commands
+registers 
+  - accessing "+ / "* for clipboard cut&paste
+  - :g/xyz/y A   <-- appending to a register
 
 :set paste and :set pastetoggle
 or with :set mouse=a you can middle-click to paste without worrying about :set paste / nopaste / pastetoggle
 Note: You need a vim compiled with X11 for access to the clipboard (echo has('X11')) will show 1 if you do.
 
-Return to where you last jumped from with `` or ''. `` is line+character, '' is line only. :help mark-motions
 
 Use |=| to reformat source code.
 
@@ -459,9 +614,59 @@ Use |:retab| to change between tabs and spaces.
 
 Use abbreviations
 
-==============================================================================
-                                                *lv_M* *learnvim-Moderate*
-MODERATE TOPICS ~
+Changelist
+  - g; and g,
+
+Show -where- a setting was set
+:verbose set sw?
+
+Quickfix window
+  - make
+    :cn / :cp
+
+Recipe: Setting Up A Practice File   *learnvim-setting-up-a-practice-file*
+-------------------------------------------------------------------------{{{1
+Problem: ~
+There's just too much to learn with Vim, and every time you learn a new thing,
+it seems that the last cool tip you learned slips from memory.
+
+Solution: ~
+Have a practise file. It's a good idea to have a file you can jump to whenever
+you want to test a newly learned Vim feature or continue to practise
+previously learned material so that it doesn't fade away. Here's a short
+recipe on how to do that:
+
+1. Choose a location, say: ~/.vim/practice.txt (Create the directory if it
+   doesn't exist - you'll be using it in a later tip.)
+2. Edit that file in Vim and type the following command:
+>
+   mP
+<
+That sets the global P mark (|learnvim-marks|) on line one of your practice
+file. The great thing about global marks ([A-Z]) is that not only do they
+remember the line on which they were set (like local marks [a-z]), but they
+also remember the file in which they were set. So, now at any time when you're
+in Vim and you'd like to jump to your practice file, just type:
+>
+   'P
+<
+You can use |ctrl-o| to jump back to where you came from when you've finished
+practising.
+
+Note: You should practice that a few times now so you get the hang of it. Open
+your ~/.vimrc file and then type   'P   to jump to your practice file, and
+then |ctrl-o| to jump back. You could use   'P   to jump forward again, but
+this is a great opportunity to mention |ctrl-i| which is used to jump forward
+in the |jumplist| The astute reader will have noticed the help file that entry
+is located in and hence the importance placed upon reading |motion.txt| within
+this section of LearnVim.
+
+Now, type |ctrl-o| enough times until you get back to wherever it was you
+jumped here from. :)
+-------------------------------------------------------------------------1}}}
+
+##############################################################################
+MODERATE TOPICS                                 *lv_M* *learnvim-Moderate*
 
 Competencies ~
 
@@ -469,10 +674,8 @@ On completing this section, you will:
 
 |lv_M_I|	Be able to ...
 
-------------------------------------------------------------------------------
+==============================================================================
 
-Upper Intermediate
-------------------
 bufdo
 	:bufdo e    to re-read all open buffers from disk
 windo
@@ -504,20 +707,29 @@ macros
 maps
 	map \x :tabe <c-r>=expand('%:h')<CR>/
 
-==============================================================================
-                                                *lv_A* *learnvim-Advanced*
-ADVANCED TOPICS ~
+:w !sudo tee %
+:earlier + :later
+
+reopen the file with different encodoings (when working with legacy files)
+:e ++enc=cp1250
+
+Perldo and Rubydo (taken from http://stackoverflow.com/questions/726894/what-are-the-dark-corners-of-vim-your-mom-)
+:. perldo $_ = join ' ', reverse split
+:. rubydo $_ += ' ' + (1..8).collect{('A'..'Z').to_a[rand 26]}.join
+
+
+
+##############################################################################
+ADVANCED TOPICS                                 *lv_A* *learnvim-Advanced*
 
 Competencies ~
 
 On completing this section, you will:
 
-|lv_A_I|	Be able to ...
+|lv_A_I|	Be able to create custom functions in VimScript
 
-------------------------------------------------------------------------------
+==============================================================================
 
-Advanced
---------
 custom commands
 customising the menu in gvim
 vim scripting
@@ -525,8 +737,75 @@ variable scope (g: s: a:, etc)
 writing plugins
 :h feature-list - know if we're running in vim or gvim  --  if has("gui_running")
 
-==============================================================================
-CREDITS ~
+
+##############################################################################
+PLUGINS                                                 *learnvim-Plugins*
+
+1. Recommended Plugins                      *learnvim-Recommended-Plugins*
+
+* Matchit
+* NERD Tree
+* NERD Commenter
+* Surround
+* Repeat
+* TagList
+* CSApprox
+* Pathogen and/or vim-addon-manager
+
+2. Additional Plugins Worth Looking At       *learnvim-Additional-Plugins*
+
+* YankRing - Vim port of Emacs' ringbuffer functionality
+* Snipmate / SnippetsEmu - Snippet / Templating support for Vim
+* Yaifa - Vim port of TextMate's Indent Finder
+* BufExplorer
+
+
+##############################################################################
+EXTERNAL RESOURCES                           *learnvim-External-Resources*
+
+Community ~
+
+* Mailing Lists - http://www.vim.org/community.php
+* IRC channel #vim on irc://irc.freenode.net
+
+Tutorials ~
+
+  Beginner ~
+
+  * http://vim.wikia.com/wiki/Learn_to_use_help
+  * http://vi-improved.org/tutorial.php
+  * http://www.eng.hawaii.edu/Tutor/vi.html
+  * http://blog.interlinked.org/tutorials/vim_tutorial.html
+  * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
+
+  Intermediate ~
+
+  * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-intermediate-tutorial-videos/
+
+  Advanced ~
+
+  * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-advanced-tutorial-videos/
+
+Plugins ~
+
+* www.vim.org/search.php
+
+Unsorted ~
+
+* http://vim.wikia.com/wiki/Vim_Tips_Wiki
+* http://vim.wikia.com/wiki/Example_vimrc
+* http://vim.wikia.com/wiki/New_to_Vim
+* http://vim.wikia.com/wiki/Vim_IRC_FAQ
+* http://vim.wikia.com/wiki/VimTip882
+* http://vim.wikia.com/wiki/Vim_documentation
+* http://vim.wikia.com/wiki/Creating_new_text_objects
+* http://vimdoc.sourceforge.net/
+* http://github.com/loota/vimfiles/blob/master/vim_usual_options.txt
+* http://blog.interlinked.org/tutorials/vim_tutorial.html
+
+
+##############################################################################
+CREDITS                                                 *learnvim-Credits*
 
 Thanks to the good people at FreeNode#vim for patiently answering my
 questions, and their many great suggestions.
@@ -542,29 +821,4 @@ http://vim.wikia.com (http://vim.wikia.com/wiki/Example_vimrc).  A more
 annotated version of the vimrc options can be found at
 http://github.com/loota/vimfiles/blob/master/vim_usual_options.txt.
 
-==============================================================================
-
-Vim FAQ
-http://vim.wikia.com/wiki/Vim_IRC_FAQ
-
-Best Plugins (need more)
-* NERD Tree
-* NERD Commenter
-* Surround
-* TagList
-* CSApprox
-
-Vim Links  (urls are rarely a good idea to embed in help text because of their transient nature :-/ )
----------
-
-* http://vim.wikia.com/wiki/Vim_Tips_Wiki
-* http://vim.wikia.com/wiki/Example_vimrc
-* http://vim.wikia.com/wiki/New_to_Vim
-* http://vim.wikia.com/wiki/Vim_IRC_FAQ
-* http://vim.wikia.com/wiki/VimTip882
-* http://vim.wikia.com/wiki/Vim_documentation
-* http://vim.wikia.com/wiki/Creating_new_text_objects
-* http://vimdoc.sourceforge.net/
-* http://github.com/loota/vimfiles/blob/master/vim_usual_options.txt
-
- vim:noet:sw=8:nosmarttab:sts=0:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:noro:modifiable:
+ vim:noet:sw=8:nosmarttab:sts=0:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:fdm=marker:ft=help:norl:noro:modifiable:
