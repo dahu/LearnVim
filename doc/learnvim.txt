@@ -32,12 +32,13 @@ On completing this section, you will:
 
 |lv_B_I|	Be able to use Vim's extensive help system.
 
-|lv_B_II|	Know where to find fundamental information on using Vim.
+|lv_B_II|	Know where to find fundamental information on using Vim along
+	      with a legend on understanding how that information is
+	      presented.
 
 |lv_B_III|	Know where the various configuration files for Vim are
-		located, what each one is responsible for, and how to set
-		options to control Vim's behaviour and customise its
-		interface.
+	      located, what each one is responsible for, and how to set
+	      options to control Vim's behaviour and customise its interface.
 
 |lv_B_IV|	Have created your own vimrc and gvimrc configuration files.
 
@@ -100,7 +101,8 @@ message, "Sorry, no help for gqip".  The problem here is in understanding
 Vim's command syntax: |gq| and |ip| are separate entities. |gq| is an operator
 command (one that takes a |motion|), whereas |ip| is an object (|text-object|
 to be precise).  The take-away here is this tip: Learn to 'take apart'
-commands you see in Vim.
+commands you see in Vim. See |learnvim-namenclature| for more tips on
+recognising and understanding Vim elements.
 
 3. Broadening Your Search                     *learnvim-expand-help-terms* 
                          
@@ -241,10 +243,31 @@ the current window, and some others create a new window in the current tab
 page.  Trying to lock a buffer to a single window inside a single tab page
 won't work; at least, not without cutting you off from many useful commands.
 
+2. Namenclature                                *learnvim-namenclature*
+
+Like any large and complex system, Vim has a dense vocabulary of terms
+surrounding its interface, operation and configuration. Understanding this
+terminology is essential for you to make significant progress in learning Vim.
+
+When you see:		It means:
+
+<CR>			Carriage Return, specifically, but realise that this
+			is how Vim and vimmers talk about special keys in Vim.
+			For example, the Escape key is written as <Esc>. See
+			|keycodes| for a list of these special keys.
+
+i_CTRL-G_j		This term consists of three separate parts.  The
+			leading i_ tells us this key is used in insert mode.
+			Find more about these in |help-context|.  The CTRL-g
+			tells us the first key to type and the _j tells us
+			that this is a key sequence, and that we should type
+			j   after the CTRL-g. 
+
+<TODO>: More terminology
+
 ==============================================================================
 CONFIGURING VIM                      *lv_B_III* *learnvim-Configuring-Vim*
 
-<TODO> overview
 Vim has many options which can be set at runtime within Vim and can be put in
 configuration files to make them permanent.
 
@@ -781,6 +804,7 @@ Tutorials ~
   Intermediate ~
 
   * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-intermediate-tutorial-videos/
+  * http://www.moolenaar.net/habits.html
 
   Advanced ~
 
