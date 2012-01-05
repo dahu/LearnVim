@@ -161,7 +161,9 @@ Admittedly, the information in the version_n_.txt files would probably not be
 your primary resource, but it gives a good answer in this case.  The point is,
 you can navigate the quickfix window for the answer you're seeking.  All the
 normal Vim navigation methods are available, including hjkl, ctrl-f/ctrl-b,
-and the method used here, searching with /.
+and the method used here, searching with /. Pressing <enter> on one of the
+quickfix lines will open the corresponding file at place the cursor on the
+associated line.
 
 Note: Because this helpfile describes this process, the quickfix window will
 have entries from here, and because "learnvim" precedes "version",
@@ -320,7 +322,7 @@ To search for options in Vim, always remember to use a single quote ( ' )
 character at the start of the option name to make sure your search doesn't
 clash with other entries in the help system. E.g.   :help 'exp   will find the
 'expandtab' option, but   :help exp   will find the |expression| evaluation
-entry.
+entry. The use of help prefixes like ( ' ) is explained in |help-context|
 
 3. GUI Option Browser                            *learnvim-option-browser*
 
@@ -399,7 +401,7 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	" Buffer (File) Options:
 	set hidden                     " Edit multiple unsaved files at the same time
 	set confirm                    " Prompt to save unsaved changes when exiting
-	" Keep various histories between edits
+	                               " Keep various histories between edits
 	set viminfo='1000,f1,<500,:100,/100
 
 	" Search Options:
@@ -421,7 +423,7 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	set showcmd                    " Show (partial) command in status line.
 	set laststatus=2               " Always show a status line
 	set cmdheight=2                " Prevent "Press Enter" message after most commands
-	" Show detailed information in status line
+	                               " Show detailed information in status line
 	set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
 
 	" Interface Options:
@@ -446,7 +448,7 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	nnoremap <F1> :help <C-R><C-W><CR>
 
 	" Reformat current paragraph
-	nnoremap Q gq}
+	nnoremap Q gqap
 
 	" Move cursor between visual lines on screen
 	nnoremap <Up> gk
@@ -488,8 +490,6 @@ too:
 
 - 'whichwrap'	Control which keys allow you to wrap around start and end of
   		lines.
-
-- 'incsearch'	Incremental search - find while you type.
 
 - 'spell' and	Enable spell checking in your preferred language.
   'spelllang'
@@ -545,9 +545,10 @@ first:
 
 |c|	(change) To delete a portion of text and enter insert mode immediately.
 |d|	(delete) To delete a portion of text.
-|y|	(yank) To copy a portion of text to the unnamed register.
+|y|	(yank) To copy a portion of text to Vim's internal clipboard (unnamed
+register,  |quotequote|)
 
-And start using them with these text objects:
+And start using them with this text object:
 
 |w|	(word) To operate from the current word under the cursor.
 
@@ -586,7 +587,7 @@ where   %   in the first command is a range. It means "the whole buffer" and
 is equivalent to the longer form:   1,$   See |cmdline-ranges|.
 
 There is much more to learn about the |:substitute| command. For instance, the
-astute reader will have noticed that I didn't talk about [count].
+astute reader will have noticed that I didn't talk about [count] :-) .
 
 ==============================================================================
 MARKS                                                     *learnvim-marks*
@@ -682,7 +683,9 @@ then |ctrl-o| to jump back. You could use   'P   to jump forward again, but
 this is a great opportunity to mention |ctrl-i| which is used to jump forward
 in the |jumplist| The astute reader will have noticed the help file that entry
 is located in and hence the importance placed upon reading |motion.txt| within
-this section of LearnVim.
+the intermediate section of LearnVim.
+
+Tip: You might like to set another global mark, 'V,  for your ~/.vimrc file.
 
 Now, type |ctrl-o| enough times until you get back to wherever it was you
 jumped here from. :)
@@ -764,23 +767,84 @@ writing plugins
 ##############################################################################
 PLUGINS                                                 *learnvim-Plugins*
 
-1. Recommended Plugins                      *learnvim-Recommended-Plugins*
+1. Plugin Management                          *learnvim-Plugin-Management*
 
-* Matchit
-* NERD Tree
-* NERD Commenter
-* Surround
-* Repeat
-* TagList
-* CSApprox
-* Pathogen and/or vim-addon-manager
+Vim is awesome. It has so much goodness baked right into it, it could very well
+meet all your editing needs, right out of the box. What it - also - has is an
+awesome plugin system for extending every possible aspect of Vim you would want.
+http://www.vim.org/scripts is the canonical source of Vim plugins.
 
-2. Additional Plugins Worth Looking At       *learnvim-Additional-Plugins*
+2. Recommended Plugins                      *learnvim-Recommended-Plugins*
 
-* YankRing - Vim port of Emacs' ringbuffer functionality
-* Snipmate / SnippetsEmu - Snippet / Templating support for Vim
-* Yaifa - Vim port of TextMate's Indent Finder
-* BufExplorer
+* Matchit   |learnvim-matchit|
+* Pathogen  |learnvim-pathogen|
+* Surround  |learnvim-surround|
+
+Matchit                                                 *learnvim-matchit*
+
+The Matchit plugin provides extended |%| matching in Vim.
+
+DOWNLOAD~
+
+Matchit comes bundled with Vim, so there is nothing to download. All you need
+to do is enable it as described below.
+
+INSTALL~
+Put the following line in your ~/.vimrc file:
+>
+  runtime macros/matchit.vim
+<
+
+
+Pathogen                                               *learnvim-pathogen*
+
+Created by the venerable, tpope, this plugin is a light-weight plugin manager
+for Vim. It allows you to install, test, upgrade and uninstall plugins much more
+easily than the default Vim approach.
+
+DOWNLOAD ~
+>
+  http://www.vim.org/scripts/script.php?script_id=2332
+<
+Or get it from github at:
+>
+  https://github.com/tpope/vim-pathogen
+<
+
+INSTALL ~
+
+Install instructions are available from the same places above for downloading
+this plugin.
+
+
+Surround                                               *learnvim-surround*
+
+Surround is another tpope creation used for adding, changing or deleting the
+text surrounding a text-object. Typical surround text includes quotes,
+brackets and tags.
+
+DOWNLOAD ~
+>
+  http://www.vim.org/scripts/script.php?script_id=1697
+<
+Or get it from github at:
+>
+  https://github.com/tpope/vim-surround
+<
+
+INSTALL ~
+
+Install instructions are available from the same places above for downloading
+this plugin.
+
+
+3. Additional Plugins Worth Looking At       *learnvim-Additional-Plugins*
+
+* NERD Tree - File browser
+* NERD Commenter - Comment/uncomment code efficiently
+* TagBar - Tag manager
+* CSApprox - 88/256 colour terminal emulator for gui only colourschemes
+* Snipmate - Snippets and Templates
 
 
 ##############################################################################
