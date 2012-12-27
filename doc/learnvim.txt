@@ -23,6 +23,11 @@ THE VIM LEARNING PATH                             *learnvim-path-overview*
 |learnvim-Moderate|
 |learnvim-Advanced|
 
+Extras~
+
+|learnvim-Plugins|
+|learnvim-External-Resources|
+
 ##############################################################################
 BEGINNER TOPICS                                 *lv_B* *learnvim-Beginner*
 
@@ -53,14 +58,14 @@ way to search for information within the help system.
 
 1. Learning how to use Vim's Help        *learnvim-essential-introduction*
 
-To read a help topic, move your cursor to that topic and type |ctrl-]|. To
-return to where you came from, type |ctrl-t|. Try that now by reading the next
-three essential (and brief) help topics. You will think I jest when I say that
-a 200 line help file is brief, but I don't actually want you to read -all- of
-that file -- just the first section. Sections are shown in red and are usually
-right-aligned.
+To read a help topic, move your cursor to that topic and type |ctrl-]|.  To
+return to where you came from, type |ctrl-t|.  Try that now by reading the
+next three essential (and brief) help topics.  You will think I jest when I
+say that a 200 line help file is brief, but I don't actually want you to read
+-all- of that file -- just the first section.  Sections are shown in red (with
+the default colour scheme) and are usually right-aligned.
 
-|help.txt|	A quick overview of navigating Vim's help system. Read
+|help.txt|	A quick overview of navigating Vim's help system.  Read
                 everything in the first section - about 10 lines, and then
 		jump back here.
 
@@ -68,7 +73,7 @@ right-aligned.
 		      command without a topic.
 
 |help-context|	A list of topic prepositions to specify the context of your
-		help search. Again, this is only about 10 lines long.
+		help search.  Again, this is only about 10 lines long.
 
 		Note: The astute reader will notice that not only does it come
 		      from the same file (|help.txt|) as the previous section
@@ -80,13 +85,13 @@ right-aligned.
 
 |notation|	An explanation of how information is presented in the help
 		files. -Now- I'm asking you to read 200+ lines in all of
-		Section 4 of |intro.txt|. Actually, you can get away with
+		Section 4 of |intro.txt|.  Actually, you can get away with
 		skimming this one - but make sure you get a feel for how Vim's
 		help files are layed out.
 
 		Note: You may think that something so usefully named as
-		      'intro.txt' should well be read in full. If you're into
-		      reading gobs of documentation, go hard. However, to save
+		      'intro.txt' should well be read in full.  If you're into
+		      reading gobs of documentation, go hard.  However, to save
 		      you time and trouble, this section of LearnVim has what
 		      is considered to be the essential knowledge you need at
 		      this stage.
@@ -101,7 +106,7 @@ message, "Sorry, no help for gqip".  The problem here is in understanding
 Vim's command syntax: |gq| and |ip| are separate entities. |gq| is an operator
 command (one that takes a |motion|), whereas |ip| is an object (|text-object|
 to be precise).  The take-away here is this tip: Learn to 'take apart'
-commands you see in Vim. See |learnvim-namenclature| for more tips on
+commands you see in Vim.  See |learnvim-namenclature| for more tips on
 recognising and understanding Vim elements.
 
 3. Broadening Your Search                     *learnvim-expand-help-terms*
@@ -161,8 +166,8 @@ Admittedly, the information in the version_n_.txt files would probably not be
 your primary resource, but it gives a good answer in this case.  The point is,
 you can navigate the quickfix window for the answer you're seeking.  All the
 normal Vim navigation methods are available, including hjkl, ctrl-f/ctrl-b,
-and the method used here, searching with /. Pressing <enter> on one of the
-quickfix lines will open the corresponding file at place the cursor on the
+and the method used here, searching with /.  Pressing <enter> on one of the
+quickfix lines will open the corresponding file and place the cursor on the
 associated line.
 
 Note: Because this helpfile describes this process, the quickfix window will
@@ -173,7 +178,7 @@ key) to jump past the learnvim entries.
 
 5. More Resources                           *learnvim-community-resources*
 
-The Vim community is strong, helpful and polite. The vim.wikia.com site, IRC
+The Vim community is strong, helpful and polite.  The vim.wikia.com site, IRC
 channel and mailing list are all great sources of information in learning Vim:
 
 * http://vim.wikia.com/wiki/Learn_to_use_help
@@ -207,7 +212,7 @@ There are also some really good Beginner Tutorials available online for Vim:
 * http://blog.interlinked.org/tutorials/vim_tutorial.html
 * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
 
-Note: That's not a typing mistake in the first link above. It -is- a vi
+Note: That's not a typing mistake in the first link above.  It -is- a vi
 tutorial! Vim came from vi, so many of Vim's fundemental editing features are
 also available in vi.
 
@@ -218,7 +223,7 @@ screen		The whole area that Vim uses to work in.  This can be a
 
 buffer		A buffer is just the word for the contents of a file.  Each
 		buffer may be associated with one file path (the file it will
-		be written to when you :w).  A buffer may not have an
+		be written to when you :w).  A buffer might not have an
 		associated file path (like the empty buffer you get when you
 		first start Vim).
 
@@ -227,10 +232,10 @@ window		A window is a place where a buffer can be displayed.  There is
 		any number of windows simultaneously.  Having a buffer that
 		isn't displayed in a window is useful when switching between
 		different tasks, letting you walk away from half-finished
-		work.  Having a buffer that is displayed in two windows can be
-		useful when trying to work on one part of the buffer based
-		upon some context provided in another part of the buffer
-		that's far away.
+		work (See |'hidden'|).  Having a buffer that is displayed in two
+		windows can be useful when trying to work on one part of the
+		buffer based upon some context provided in another part of the
+		buffer that's far away.
 
 tab page	A tab page is a place to put a group of windows.  There is
 		always at least one tab page open.  Each tab must always have
@@ -247,14 +252,14 @@ Note: Trying to create a one-to-one relationship between tab pages and buffers
 2. Namenclature                                *learnvim-namenclature*
 
 Like any large and complex system, Vim has a dense vocabulary of terms
-surrounding its interface, operation and configuration. Understanding this
+surrounding its interface, operation and configuration.  Understanding this
 terminology is essential for you to make significant progress in learning Vim.
 
 When you see:		It means:
 
 <CR>			Carriage Return, specifically, but realise that this
 			is how Vim and vimmers talk about special keys in Vim.
-			For example, the Escape key is written as <Esc>. See
+			For example, the Escape key is written as <Esc>.  See
 			|keycodes| for a list of these special keys.
 
 i_CTRL-G_j		This term consists of three separate parts.  The
@@ -263,8 +268,6 @@ i_CTRL-G_j		This term consists of three separate parts.  The
 			tells us the first key to type and the _j tells us
 			that this is a key sequence, and that we should type
 			j   after the CTRL-g.
-
-<TODO>: More terminology
 
 ==============================================================================
 CONFIGURING VIM                      *lv_B_III* *learnvim-Configuring-Vim*
@@ -305,9 +308,9 @@ Note: The table above refers to the personal vimrc file as $HOME/.vimrc, and
 
 2. Configuration Options                  *learnvim-configuration-options*
 
-Vim is highly configurable through what are referred to as |options|. Read
+Vim is highly configurable through what are referred to as |options|.  Read
 through the beginning of that help file to understand how to show and set
-options. As a quick overview:
+options.  As a quick overview:
 
 - :set option=value	Sets "option" to "value"
 - :set option?		Shows the current value of "option"
@@ -322,7 +325,7 @@ To search for options in Vim, always remember to use a single quote ( ' )
 character at the start of the option name to make sure your search doesn't
 clash with other entries in the help system. E.g.   :help 'exp   will find the
 'expandtab' option, but   :help exp   will find the |expression| evaluation
-entry. The use of help prefixes like ( ' ) is explained in |help-context|
+entry.  The use of help prefixes like ( ' ) is explained in |help-context|
 
 3. GUI Option Browser                            *learnvim-option-browser*
 
@@ -344,7 +347,7 @@ For tabs and indents:
  	:options
 <
 Scroll down the Table of Contents and press Enter on the '15 tabs and
-indenting' line. This will jump you to the set of options controlling how Vim
+indenting' line.  This will jump you to the set of options controlling how Vim
 manages indentation.
 
 Likewise, for the GUI Toolbar problem:
@@ -356,8 +359,8 @@ Scroll down or search for GUI (/GUI) and press Enter on the '10 GUI' line.
 Comments: ~
 
 Changing a value on any of the 'set' lines and pressing Enter will update your
-current settings. Add the 'set' line to your ~/.vimrc file (see
-|learnvim-vimrc| below) to make the change permanent. Actually, you should
+current settings.  Add the 'set' line to your ~/.vimrc file (see
+|learnvim-vimrc| below) to make the change permanent.  Actually, you should
 clean up the set line by removing the initial, unset version of the option
 before adding it to your ~/.vimrc file.
 
@@ -368,16 +371,16 @@ You see the line:
 >
  	set nosta	sta
 <
-If you press Enter on that line then you will enable smarttabs. Copying that
+If you press Enter on that line then you will enable smarttabs.  Copying that
 line to your ~/.vimrc file will work, but it's unnecessary and unsightly to
-have the option turned off and then on like that. So, when adding this to your
+have the option turned off and then on like that.  So, when adding this to your
 ~/.vimrc, change the line like this:
 >
  	set sta
 <
 Actually, it is a good practice to use the full name of an option so that when
-you come back to your ~/.vimrc file in six months time you will be able to
-understand what the setting means. So, change that line to:
+you come back to your ~/.vimrc file in six months' time you will be able to
+understand what the setting means.  So, change that line to:
 >
  	set smarttab
 -------------------------------------------------------------------------1}}}
@@ -402,7 +405,7 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	set hidden                     " Edit multiple unsaved files at the same time
 	set confirm                    " Prompt to save unsaved changes when exiting
 	                               " Keep various histories between edits
-	set viminfo='1000,f1,<500,:100,/100
+	set viminfo='1000,f1,<500,:100,/100,h
 
 	" Search Options:
 	set hlsearch                   " Highlight searches. See below for more.
@@ -437,7 +440,8 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	" Indentation Options:
 	set tabstop=8                  " NEVER change this!
 	" Change the '2' value below to your preferred indentation level
-	set shiftwidth=softtabstop=2   " Number of spaces for each indent level
+	set shiftwidth=2               " Number of spaces for
+	set softtabstop=2              " ...each indent level
 	set expandtab                  " Even when pressing <Tab>
 
 	"""""""
@@ -494,7 +498,7 @@ too:
 - 'spell' and	Enable spell checking in your preferred language.
   'spelllang'
 
-- 'backup'	To keep backups of your files. There are several other related
+- 'backup'	To keep backups of your files.  There are several other related
 		options with "backup" in their name.
 
 
@@ -512,8 +516,8 @@ $HOME/.gvimrc because they are reset when the GUI is started.
 - 'colorscheme'	If you want to have the GUI use a different scheme to terminal
 		Vim.
 
-- 'guifont'	Font (or list of fonts to try) to use in the GUI. See the tip
-  below about setting your guifont.
+- 'guifont'	Font (or list of fonts to try) to use in the GUI.  See the tip
+		below about setting your guifont.
 
 - 'guioptions'	Control which components and options of the GUI to use.
 
@@ -521,36 +525,39 @@ $HOME/.gvimrc because they are reset when the GUI is started.
 ##############################################################################
 INTERMEDIATE TOPICS                         *lv_I* *learnvim-Intermediate*
 
-Competencies ~
-
-On completing this section, you will:
-
-|lv_I_I|	Be able to ...
+You don't need to worry about competencies anymore -- you have your Vim
+Driver's license, provisional plates.  You're allowed to drive solo, but
+you're still on zero tolerance conditions and cautioned against excessive
+night driving until you develop the necessary reflexes to handle yourself in
+challenging environments.  You can get yourself around town, but you lack the
+refined strategies of more accomplished drivers.  In the world of Vim, you're
+ready to learn about expert |navigation|.
 
 ==============================================================================
 MOTION                                                   *learnvim-motion*
 
-If you haven't read all of |motion.txt| yet, now would be a good time. I know,
-though, right? It's like 1300 lines long! That'd take hours to read, let alone
-absorb... Well, I could say the journey of a thousand miles begins with the
-first step, or the secret to eating an elephant is to do so bite at a time,
-but I won't. Instead, I offer this path through the motion morass:
+If you haven't read all of |motion.txt| yet, now would be a good time.  I
+know, though, right? It's like 1300 lines long! That'd take hours to read, let
+alone absorb...  Well, I could say the journey of a thousand miles begins with
+the first step, or the secret to eating an elephant is to do so bite at a
+time, but I won't.  Instead, I offer this path through the motion morass:
 
 Operators & Text Objects ~
 
 One of Vim's most powerful features is its ability to perform an action over a
-specific portion of text. In Vim speak, the action is called an |operator| and
-the portion of text is called a |text-object|. Get to know these operators
-first:
+specific portion of text.  In Vim speak, the action is called an |operator|
+and the portion of text is called a |text-object|.  Get to know these
+operators first:
 
 |c|	(change) To delete a portion of text and enter insert mode immediately.
 |d|	(delete) To delete a portion of text.
 |y|	(yank) To copy a portion of text to Vim's internal clipboard (unnamed
-register,  |quotequote|)
+	register,  |quotequote|)
 
-And start using them with this text object:
+And start using them with this motion:
 
-|w|	(word) To operate from the current word under the cursor.
+|w|	(word) To operate from the current word under the cursor.  See
+	|word-motions| for the others in this category.
 
 EXERCISES ~
 
@@ -567,44 +574,26 @@ Commands:             Description: ~
 2. 3w                 - move forward three words (to "ministers")
 3. cwVimmers<Esc>     - change the word "ministers" to "Vimmers"
 
+                                                          *learnvim-marks*
+Marks and Mark Motions~
 
-
-==============================================================================
-SEARCH AND REPLACE                               *learnvim-search-replace*
-
-A common mistake is to think that the search and replace (|:substitute|)
-command in Vim is:
->
-    :%s/find/replace/flags
-<
-and that gets people by for a while, but there's a conceptual gap in there
-waiting to bite the early learner. The actual search and replace command in
-Vim is:
->
-    :[range]s/find/replace/flags [count]
-<
-where   %   in the first command is a range. It means "the whole buffer" and
-is equivalent to the longer form:   1,$   See |cmdline-ranges|.
-
-There is much more to learn about the |:substitute| command. For instance, the
-astute reader will have noticed that I didn't talk about [count] :-) .
-
-==============================================================================
-MARKS                                                     *learnvim-marks*
-
-TODO:
-* Introduce marks
-* Return to where you last jumped from with `` or ''. `` is line+character, '' is line only. :help mark-motions
+Vim has marks (bookmarks) -- places you can quickly return to later.  See
+|mark-motions| for a good coverage of the many available builtin marks and how
+to set your own user marks.  Pay special attention to the difference between
+lower-case marks {a-z} versus uppercase marks {A-Z}.  The two symbol marks, '
+(quote) and ` (backquote) are very frequently used by accomplished vimmers.
+Experiment with double-tapping these keys to see the difference in their
+behaviour.
 
 Law of the Instrument ~
 
 "It is tempting, if the only tool you have is a hammer, to treat everything as
 if it were a nail."                                   -- Abraham Maslow (1966)
 
-Marks are great, but don't fall into the trap of over using your shiny, new
-toys for every problem at hand. Take for example the operation of deleting
+Marks are great, but don't fall into the trap of over using your shiny new
+toys for every problem at hand.  Take for example the operation of deleting
 everything from the current cursor to a word you can see a few lines below in
-your document. Having just learned about marks, it might seem like a good idea
+your document.  Having just learned about marks, it might seem like a good idea
 to do this:
 >
     ma/foo<CR>d`a
@@ -615,6 +604,18 @@ But there's a much better way to do that:
 <
 You're going to jump to your practise file and try that out now, aren't you? ;)
 See |setting-up-a-practice-file| if you haven't done so already.
+
+Becoming an Expert Navigator~
+
+What else is there to learn from |motion.txt|?
+
+* |object-motions| 	Larger objects, like sentences, paragraphs and
+			sections.
+* |jump-motions|	Moving up and down the jump list as well as the
+			related |change-list-jumps|.
+
+There are many other motions in |motion.txt| than mentioned here.  It really
+would pay to eventually work your way through that text.
 
 ==============================================================================
 
@@ -638,9 +639,6 @@ Use |:retab| to change between tabs and spaces.
 
 Use abbreviations
 
-Changelist
-  - g; and g,
-
 Show -where- a setting was set
 :verbose set sw?
 
@@ -655,9 +653,9 @@ There's just too much to learn with Vim, and every time you learn a new thing,
 it seems that the last cool tip you learned slips from memory.
 
 Solution: ~
-Have a practise file. It's a good idea to have a file you can jump to whenever
+Have a practise file.  It's a good idea to have a file you can jump to whenever
 you want to test a newly learned Vim feature or continue to practise
-previously learned material so that it doesn't fade away. Here's a short
+previously learned material so that it doesn't fade away.  Here's a short
 recipe on how to do that:
 
 1. Choose a location, say: ~/.vim/practice.txt (Create the directory if it
@@ -667,9 +665,9 @@ recipe on how to do that:
    mP
 <
 That sets the global P mark (|learnvim-marks|) on line one of your practice
-file. The great thing about global marks ([A-Z]) is that not only do they
+file.  The great thing about global marks ([A-Z]) is that not only do they
 remember the line on which they were set (like local marks [a-z]), but they
-also remember the file in which they were set. So, now at any time when you're
+also remember the file in which they were set.  So, now at any time when you're
 in Vim and you'd like to jump to your practice file, just type:
 >
    'P
@@ -679,14 +677,14 @@ practising.
 
 Note: You should practice that a few times now so you get the hang of it.
       Open your ~/.vimrc file and then type   'P   to jump to your practice
-      file, and then |ctrl-o| to jump back. You could use   'P   to jump
+      file, and then |ctrl-o| to jump back.  You could use   'P   to jump
       forward again, but this is a great opportunity to mention |ctrl-i| which
       is used to jump forward in the |jumplist| The astute reader will have
       noticed the help file that entry is located in and hence the importance
       placed upon reading |motion.txt| within the intermediate section of
       LearnVim.
 
-Tip: You might like to set another global mark, 'V,  for your ~/.vimrc file.
+Tip: You might like to set another global mark, 'V, for your ~/.vimrc file.
 
 Now, type |ctrl-o| enough times until you get back to wherever it was you
 jumped here from. :)
@@ -708,15 +706,14 @@ MACROS                                          *lv_M_I* *learnvim-Macros*
 
 1. Recording Macros                            *learnvim-recording-macros*
 
-Macros are referred to as complex repeats in the Vim docs. See |q| for the
-mechanics of recording and then read on for playing back macros. Here is a
-brief recap:
+Macros are referred to as complex repeats in the Vim docs.  See |q| for the
+mechanics of recording and then read on for playing back macros.
 
-q{0-9a-zA-Z"} begins recording into the specified register. All movements,
+q{0-9a-zA-Z"} begins recording into the specified register.  All movements,
 insertions, deletions, :ex commands, etc, are recorded until you press   q
-again. So, the command   qagUwWq   creates a macro that upper-cases the
+again.  So, the command   qagUwWq   creates a macro that upper-cases the
 current word (from the cursor forward) and then moves to the next WORD
-(skipping whitespace and punctuation). To run this macro on the next word, we
+(skipping whitespace and punctuation).  To run this macro on the next word, we
 use the command   @a   and after that, to run it on another word we only need
 to use   @@   (which repeats the last macro command, conveniently.)
 
@@ -725,61 +722,56 @@ append more command to it by using the   q   command with the upper-case form
 of the lettered register (A-Z)
 
 There are quite a few other nifty tricks you can pull with macros, so I
-implore you to read |:@| and guzzle that goodness up. But
-here, I'm going to continue talking about recursive macros - macros that call
-themselves. Recursive macros are one way to repeat a series of commands across
-multiple chunks of text all automatically so you don't have to hit   @a   or
-even   @@   over and over and over... your @ key thanks you now.
+implore you to read |:@|.
 
 2. Recursive Macros                            *learnvim-recursive-macros*
 
-Stop the ride
+Recursive macros are macros that call themselves.  Recursive macros are one way
+to repeat a series of commands across multiple chunks of text all
+automatically so you don't have to hit   @a   or even   @@   repeatedly to
+execute the macro in all the places you need it to run.
+
+Stop Condition~
 
 If you don't provide an action within the body of your macro that causes an
 error, the macro will run from the point of execution until the end of the
-file. This may be what you want; it may not. To have it stop somewhere
-specific, you'll have to ensure it errors at that point. Using the    FfTt
-commands are a common way to force a failed search. If you use a pattern
+file.  This may be what you want; it may not.  To have it stop somewhere
+specific, you'll have to ensure it errors at that point.  Using the    FfTt
+commands are a common way to force a failed search.  If you use a pattern
 search with the   /   command, you may need to use anchors to cause failures.
 
-The quaker
+Clearing the Register Beforehand~
 
-Because a recursive macro executes itself with the command   @a   (assuming the macro is being recorded in register   a), then at the point in time that the macro is being created, the contents of register   a   *before* this recording began will be inserted into the macro body when it sees   @a. Unless you know what you're doing, you probably want this to be empty. To this end, we use   qaq   as a fast way to empty register   a. By recording nothing into   a, we effectively empty it. The subsequent   qa   in the command string   qaqqa   begins the real recording.
+Because a recursive macro executes itself with the command   @a   (assuming
+the macro is being recorded in register a), then at the point in time that the
+macro is being created, the contents of register   a   before this recording
+began will be inserted into the macro body when it sees   @a.  Unless you know
+what you're doing, you probably want this to be empty.  Use   qaq   as a fast
+way to empty register a.  By recording nothing into   a   , we effectively
+empty it.  The subsequent   qa   in the command string   qaqqa   begins the
+real recording.
 
-Secret Sauce
+Start in the Right Place~
 
-To allow the recursive invocation of your macro to be actually useful,  you have to arrange for it to start in the right place. This could be on the next line, or at the next word, or next paragraph, or block, or... etc. The command   j0    moves down a line and to the first column of the screen, ready for the subsequent recursive invocation with the command   @a   and switching off recording with   q   hence   j0@aq
+To allow the recursive invocation of your macro to be actually useful, you
+have to arrange for it to start in the right place.  This could be on the next
+line, or at the next word, or next paragraph, or block, or...  etc.  The command
+j0 moves down a line and to the first column of the screen, ready for the
+subsequent recursive invocation with the command   @a   and switching off
+recording with   q   hence   j0@aq
 
-Blow the Raspberry
-
-You're done recording. Now you need to run the sucker. We do that with   @a   (presuming you recorded your macro into register   a)
-
+You're done recording.  Use   @a   to run it.
+-------------------------------------------------------------------------------
 
 
 bufdo
 	:bufdo e    to re-read all open buffers from disk
 windo
 args and argdo
-macros
 	:h key-notation
 
-	record with qa yadda-yadda q
-	add additional commands with capital letter: qA more-yadda q
 	paste into document with "ap to edit commands
 	re-read into register with 0"ay$ when cursor is on the line of commands
-	@a to execute
-	@@ to re-execute last macro (or : command, incidentally)
-	10@a to run macro 10 times
-	999@a to run it so many times it approximates 'repeat for as many times as possible'
-	but see the next para about causing the macro to have a fail case or making it
-	recursive.
-
-	with a command that will fail, the macro aborts execution, so 1000@x will
-	allow you to run it until it can't (providing you give a good fail, like
-	moving down a line (so it doesn't wrap around the buffer and actually try to
-	execute 1000 times)).
-
-	Use recursive macros.
 
 :h expand()
 :h filename-modifiers
@@ -823,10 +815,10 @@ PLUGINS                                                 *learnvim-Plugins*
 
 1. Plugin Management                          *learnvim-Plugin-Management*
 
-Vim is awesome. It has so much goodness baked right into it, it could very well
-meet all your editing needs, right out of the box. What it - also - has is an
-awesome plugin system for extending every possible aspect of Vim you would want.
-http://www.vim.org/scripts is the canonical source of Vim plugins.
+Vim is awesome.  It has so much goodness baked right into it, it could very
+well meet all your editing needs, right out of the box.  What it -also- has is
+an awesome plugin system for extending every possible aspect of Vim you would
+want.  http://www.vim.org/scripts is the canonical source of Vim plugins.
 
 2. Recommended Plugins                      *learnvim-Recommended-Plugins*
 
@@ -840,7 +832,7 @@ The Matchit plugin provides extended |%| matching in Vim.
 
 DOWNLOAD~
 
-Matchit comes bundled with Vim, so there is nothing to download. All you need
+Matchit comes bundled with Vim, so there is nothing to download.  All you need
 to do is enable it as described below.
 
 INSTALL~
@@ -853,8 +845,8 @@ Put the following line in your ~/.vimrc file:
 Pathogen                                               *learnvim-pathogen*
 
 Created by the venerable, tpope, this plugin is a light-weight plugin manager
-for Vim. It allows you to install, test, upgrade and uninstall plugins much more
-easily than the default Vim approach.
+for Vim.  It allows you to install, test, upgrade and uninstall plugins much
+more easily than the default Vim approach.
 
 DOWNLOAD ~
 >
@@ -874,7 +866,7 @@ this plugin.
 Surround                                               *learnvim-surround*
 
 Surround is another tpope creation used for adding, changing or deleting the
-text surrounding a text-object. Typical surround text includes quotes,
+text surrounding a text-object.  Typical surround text includes quotes,
 brackets and tags.
 
 DOWNLOAD ~
@@ -899,6 +891,8 @@ this plugin.
 * TagBar - Tag manager
 * CSApprox - 88/256 colour terminal emulator for gui only colourschemes
 * Snipmate - Snippets and Templates
+* SearchParty - Extended Search, Replace, Highlight and Match commands
+* Fanf,ingTastic; - FftT;, across lines
 
 
 ##############################################################################
@@ -931,6 +925,7 @@ Tutorials ~
 Plugins ~
 
 * www.vim.org/search.php
+* https://github.com/vim-scripts
 
 Unsorted ~
 
