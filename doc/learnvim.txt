@@ -2,7 +2,7 @@
 
 This help file introduces fundamental concepts, offers concrete advice for
 correctly configuring a new Vim instance and outlines a progressive set of
-topics for the enthusiastic newcomer to study and practise.
+topics for the enthusiastic newcomer to study and practice.
 
 This is not a typical tutorial for Vim in that many topics are merely
 introduced here with further study deferred to the excellent Vim Reference
@@ -601,7 +601,7 @@ But there's a much better way to do that:
 >
     d/foo<CR>
 <
-You're going to jump to your practise file and try that out now, aren't you? ;)
+You're going to jump to your practice file and try that out now, aren't you? ;)
 See |setting-up-a-practice-file| if you haven't done so already.
 
 Becoming an Expert Navigator~
@@ -617,6 +617,8 @@ There are many other motions in |motion.txt| than mentioned here.  It really
 would pay to eventually work your way through that text.
 
 ==============================================================================
+
+[UNFINISHED: The following list of topics are planned for this section]
 
 buffers (:ls, :b #, :b name, bn, bp, ctrl-6, etc)
 windows (:only, c-w et al)
@@ -645,6 +647,10 @@ Quickfix window
   - make
     :cn / :cp
 
+[/UNFINISHED]
+
+--------------------------------------------------------------------------------
+
 Recipe: Setting Up A Practice File   *learnvim-setting-up-a-practice-file*
 -------------------------------------------------------------------------{{{1
 Problem: ~
@@ -652,8 +658,8 @@ There's just too much to learn with Vim, and every time you learn a new thing,
 it seems that the last cool tip you learned slips from memory.
 
 Solution: ~
-Have a practise file.  It's a good idea to have a file you can jump to whenever
-you want to test a newly learned Vim feature or continue to practise
+Have a practice file.  It's a good idea to have a file you can jump to whenever
+you want to test a newly learned Vim feature or continue to practice
 previously learned material so that it doesn't fade away.  Here's a short
 recipe on how to do that:
 
@@ -692,15 +698,6 @@ jumped here from. :)
 ##############################################################################
 MODERATE TOPICS                                 *lv_M* *learnvim-Moderate*
 
-Competencies ~
-
-On completing this section, you will:
-
-|lv_M_I|	Be able to ...
-
-==============================================================================
-
-==============================================================================
 MACROS                                          *lv_M_I* *learnvim-Macros*
 
 1. Recording Macros                            *learnvim-recording-macros*
@@ -760,8 +757,10 @@ subsequent recursive invocation with the command   @a   and switching off
 recording with   q   hence   j0@aq
 
 You're done recording.  Use   @a   to run it.
+
 -------------------------------------------------------------------------------
 
+[UNFINISHED: The following list of topics are planned for this section]
 
 bufdo
 	:bufdo e    to re-read all open buffers from disk
@@ -788,18 +787,99 @@ Perldo and Rubydo (taken from http://stackoverflow.com/questions/726894/what-are
 :. perldo $_ = join ' ', reverse split
 :. rubydo $_ += ' ' + (1..8).collect{('A'..'Z').to_a[rand 26]}.join
 
-
+[/UNFINISHED]
 
 ##############################################################################
 ADVANCED TOPICS                                 *lv_A* *learnvim-Advanced*
 
-Competencies ~
+|lv_A_I|	Becomming a VimL Master~
 
-On completing this section, you will:
+--------------------------------------------------------------------------------
+                                                *lv_A_I* *learnvim-viml-master*
 
-|lv_A_I|	Be able to create custom functions in VimScript
+Becomming a VimL Master~
 
-==============================================================================
+Everybody wants to be a grey-beard master vimmer, mind-weilding vim like a
+jedi, jumping around buffers like vimjas and scripting changes like bitchin
+vizzards. With this path to VimL mastery, you too can be master of your Vim,
+envy of your peers, idol to your fans.
+
+Skill Progression: Trainee -> Novice -> Worker -> Professional -> Expert
+
+Trainee~
+
+* Read the following parts of |cmdline.txt|
+** |cmdline-lines|
+** |cmdline-ranges|
+** |cmdline-special|
+* Read the following parts of |options.txt|
+** |set-option|
+** The following specific options:
+*** |'debug'|
+*** |'eventignore'|
+*** |'ignorecase'|
+*** |'magic'|
+*** |'maxfuncdepth'|
+*** |'runtimepath'|
+*** |'verbose'|
+* Read all of |pattern.txt|
+* Read the following parts of |eval.txt|
+** |variables|
+** |expression-syntax| (skim)
+** |internal-variables|
+** |user-functions|
+** |expression-commands|
+** |eval-examples|
+* Read the following sections of |usr_41.txt|
+** |41.1|
+** |41.2|
+** |41.3|
+** |41.4|
+** |41.5|
+** |41.6|
+** |41.7|
+** |41.8|
+* Read |function-list| (Vim’s built-in VimL library)
+* Read http://www.ibm.com/developerworks/linux/library/l-vim-script-1/index.html
+* Read http://learnvimscriptthehardway.stevelosh.com/
+
+Novice~
+
+* Contribute bug fixes and small enhancements to existing plugins.
+* Read |map.txt|
+* Read |'timeout'| option
+* Read |'maxmapdepth'| option
+* Read |usr_40.txt|
+* Read |autocmd.txt|
+* Read |filetype.txt|
+* Read |various.txt|
+* In regard to |:normal|, read |motion.txt|
+
+Worker~
+
+* Read |eval.txt|
+* Read |usr_41.txt| (again)
+* Create three or more plugins under the supervision of a Professional or Expert
+* Assist Novices
+
+Professional~
+
+* Actively support five or more peer-reviewed, fully |usr_41| compliant plugins
+* Thoroughly document all supported plugins
+* Supervise Workers
+* Assist in the development of reference & resource materials
+* Participate in discussions about best practice for VimL development
+
+Expert~
+
+* Create new tools and libraries for VimL development
+* Create new/interesting/engaging/fun reference material or tutorials for an aspect of Vim/VimL
+* Mentor, guide and train other VimLers
+* Maintain a regular presence on Stack Overflow, the vim-dev mailing lists, #vim or #viml as an authority and guide on advanced Vim and VimL topics
+
+--------------------------------------------------------------------------------
+
+[UNFINISHED: The following list of topics are planned for this section]
 
 custom commands
 customising the menu in gvim
@@ -808,6 +888,7 @@ variable scope (g: s: a:, etc)
 writing plugins
 :h feature-list - know if we're running in vim or gvim  --  if has("gui_running")
 
+[/UNFINISHED]
 
 ##############################################################################
 PLUGINS                                                 *learnvim-Plugins*
@@ -911,9 +992,11 @@ Tutorials ~
   * http://www.eng.hawaii.edu/Tutor/vi.html
   * http://blog.interlinked.org/tutorials/vim_tutorial.html
   * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
+  * https://github.com/dahu/VimRegexTutor
 
   Intermediate ~
 
+  * https://github.com/dahu/vim_waz_ere
   * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-intermediate-tutorial-videos/
   * http://www.moolenaar.net/habits.html
 
