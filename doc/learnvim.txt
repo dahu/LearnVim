@@ -993,7 +993,6 @@ Tutorials ~
 
   * http://vim.wikia.com/wiki/Learn_to_use_help
   * http://vi-improved.org/tutorial.php
-  * http://www.eng.hawaii.edu/Tutor/vi.html
   * http://blog.interlinked.org/tutorials/vim_tutorial.html
   * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
   * https://github.com/dahu/VimRegexTutor
