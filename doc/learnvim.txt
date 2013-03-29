@@ -441,7 +441,6 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	" Change the '2' value below to your preferred indentation level
 	set shiftwidth=2               " Number of spaces for
 	set softtabstop=2              " ...each indent level
-	set expandtab                  " Even when pressing <Tab>
 
 	"""""""
 	" Maps
@@ -488,17 +487,22 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 Read about the following options and consider adding them to your $HOME/.vimrc
 too:
 
+- 'backup'	To keep backups of your files.  There are several other related
+		options with "backup" in their name.
+
+- 'expandtab'	Use spaces instead when inserting a <Tab>. The choice of
+		whether to use <Tab> characters or <space> characters to denote
+		indentation is a personal one and can lead to heated dispute
+		among programmers.  http://www.jwz.org/doc/tabs-vs-spaces.html
+
 - 'colorscheme'	See |:syn-default-override|.  There are many more themes to
  		choose from at htp://www.vim.org/scripts/
-
-- 'whichwrap'	Control which keys allow you to wrap around start and end of
-  		lines.
 
 - 'spell' and	Enable spell checking in your preferred language.
   'spelllang'
 
-- 'backup'	To keep backups of your files.  There are several other related
-		options with "backup" in their name.
+- 'whichwrap'	Control which keys allow you to wrap around start and end of
+  		lines.
 
 
 3. Your Own gvimrc File                                  *learnvim-gvimrc*
