@@ -992,10 +992,12 @@ Tutorials ~
   Beginner ~
 
   * http://vim.wikia.com/wiki/Learn_to_use_help
+  * http://openvim.com/tutorial.html
   * http://vi-improved.org/tutorial.php
   * http://blog.interlinked.org/tutorials/vim_tutorial.html
   * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
   * https://github.com/dahu/VimRegexTutor
+  * http://vimhelp.appspot.com/vim_faq.txt.html
 
   Intermediate ~
 
