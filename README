@@ -16,7 +16,7 @@ Copy http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt to your ~/.vim/
 
 .Windows:
 
-Copy http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt to your $HOME/vimfiles/ directory.
+Copy http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt to your $HOME\vimfiles directory.
 
 Run  :helptags ~/.vim/doc/   from within Vim.
 Type :help learnvim   to get started.
