@@ -474,7 +474,8 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	"
 	if has("autocmd")
 	  augroup filetype
-	    autocmd!              " Remove ALL autocommands for the current group.
+	    " Remove ALL autocommands for the current group.
+	    autocmd!
 
 	    " Jump to last-known-position when editing files
 	    " Note: The | character is used in Vim as a command separator (like ; in C)
