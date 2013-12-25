@@ -10,13 +10,14 @@ topics for the enthusiastic newcomer to study and practise.
 Install
 -------
 
-.Linux / OSZ:
+* Linux / OSZ:
 
-Copy http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt to your ~/.vim/doc/ directory.
+  Copy http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt to your ~/.vim/doc/ directory.
 
-.Windows:
+* Windows:
 
-Copy http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt to your $HOME\vimfiles\doc\ directory.
+  Copy http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt to your $HOME\vimfiles\doc\ directory.
 
 Run  :helptags ~/.vim/doc/   from within Vim.
+
 Type :help learnvim   to get started.
