@@ -10,7 +10,7 @@ topics for the enthusiastic newcomer to study and practise.
 Install
 -------
 
-* Linux / OSZ:
+* Linux / OS X:
 
   Copy http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt to your ~/.vim/doc/ directory.
 
