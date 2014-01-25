@@ -211,10 +211,6 @@ There are also some really good Beginner Tutorials available online for Vim:
 * http://blog.interlinked.org/tutorials/vim_tutorial.html
 * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
 
-Note: That's not a typing mistake in the first link above.  It -is- a vi
-tutorial! Vim came from vi, so many of Vim's fundemental editing features are
-also available in vi.
-
 2. Definitions                                *learnvim-basic-definitions*
 
 screen		The whole area that Vim uses to work in.  This can be a
