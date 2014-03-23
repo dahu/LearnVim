@@ -475,7 +475,7 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 
 	    " Jump to last-known-position when editing files
 	    " Note: The | character is used in Vim as a command separator (like ; in C)
-	    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 	  augroup END
 	endif
 <
