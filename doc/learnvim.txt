@@ -209,7 +209,7 @@ begin turning from vertical.  Here is a good place to start:
 There are also some really good Beginner Tutorials available online for Vim:
 
 * http://blog.interlinked.org/tutorials/vim_tutorial.html
-* http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
+* http://derekwyatt.org/vim/tutorials/novice/
 
 2. Definitions                                *learnvim-basic-definitions*
 
@@ -992,19 +992,19 @@ Tutorials ~
   * http://openvim.com/tutorial.html
   * http://vi-improved.org/tutorial.php
   * http://blog.interlinked.org/tutorials/vim_tutorial.html
-  * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-novice-tutorial-videos/
+  * http://derekwyatt.org/vim/tutorials/novice/
   * https://github.com/dahu/VimRegexTutor
   * http://vimhelp.appspot.com/vim_faq.txt.html
 
   Intermediate ~
 
   * https://github.com/dahu/vim_waz_ere
-  * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-intermediate-tutorial-videos/
+  * http://derekwyatt.org/vim/tutorials/intermediate/
   * http://www.moolenaar.net/habits.html
 
   Advanced ~
 
-  * http://www.derekwyatt.org/vim/vim-tutorial-videos/vim-advanced-tutorial-videos/
+  * http://derekwyatt.org/vim/tutorials/advanced/
 
 Plugins ~
 
