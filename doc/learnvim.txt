@@ -106,7 +106,7 @@ message, "Sorry, no help for gqip".  The problem here is in understanding
 Vim's command syntax: |gq| and |ip| are separate entities. |gq| is an operator
 command (one that takes a |motion|), whereas |ip| is an object (|text-object|
 to be precise).  The take-away here is this tip: Learn to 'take apart'
-commands you see in Vim.  See |learnvim-namenclature| for more tips on
+commands you see in Vim.  See |learnvim-nomenclature| for more tips on
 recognising and understanding Vim elements.
 
 3. Broadening Your Search                     *learnvim-expand-help-terms*
@@ -244,7 +244,7 @@ Note: Trying to create a one-to-one relationship between tab pages and buffers
       single tab page won't work; at least, not without cutting you off from
       many useful commands.
 
-2. Namenclature                                *learnvim-namenclature*
+2. Nomenclature                                *learnvim-nomenclature*
 
 Like any large and complex system, Vim has a dense vocabulary of terms
 surrounding its interface, operation and configuration.  Understanding this
@@ -331,7 +331,7 @@ Recipe: Using the Options Browser to search for and change a Vim setting ~
 -------------------------------------------------------------------------{{{1
 Problem: ~
 
-You want to change the bahaviour of something in Vim (like the tab & indent
+You want to change the behaviour of something in Vim (like the tab & indent
 settings, or how the Toolbar is displayed in the GUI), but you don't know the
 option name and searching the help system doesn't appeal to you.
 
@@ -446,7 +446,7 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	nnoremap <F1> :help <C-R><C-W><CR>
 
 	" Reformat current paragraph
-	nnoremap Q gqap
+	nnoremap Q gqip
 
 	" Move cursor between visual lines on screen
 	nnoremap <Up> gk
@@ -800,7 +800,7 @@ ADVANCED TOPICS                                 *lv_A* *learnvim-Advanced*
 
 Becomming a VimL Master~
 
-Everybody wants to be a grey-beard master vimmer, mind-weilding vim like a
+Everybody wants to be a grey-beard master vimmer, mind-wielding Vim like a
 jedi, jumping around buffers like vimjas and scripting changes like bitchin
 vizzards. With this path to VimL mastery, you too can be master of your Vim,
 envy of your peers, idol to your fans.
@@ -974,6 +974,7 @@ this plugin.
 * Snipmate - Snippets and Templates
 * SearchParty - Extended Search, Replace, Highlight and Match commands
 * Fanf,ingTastic; - FftT;, across lines
+* vim-KWEasy - Jump to any character on the screen
 
 
 ##############################################################################
