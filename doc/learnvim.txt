@@ -654,6 +654,13 @@ Quickfix window
 
 Recipe: Setting Up A Practice File   *learnvim-setting-up-a-practice-file*
 -------------------------------------------------------------------------{{{1
+New!:~
+You can use the instructions below to set up a practice file, OR you can
+install https://github.com/dahu/VimGym , a plugin designed for this exact
+purpose.
+
+The Manual Way:
+
 Problem: ~
 There's just too much to learn with Vim, and every time you learn a new thing,
 it seems that the last cool tip you learned slips from memory.
