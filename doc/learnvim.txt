@@ -771,10 +771,125 @@ vimmer knows that the extra bling doesn't add any real value to their edits.
 Vanilla, when done right, is a classy choice.
 
 ==============================================================================
+BUFFERS AND ARGS                                   *learnvim-buffers-args*
+
+Read |windows-intro| for an overview of buffers, windows and tab-pages in Vim.
+
+The Buffer List~
+
+Use the |:ls| command to show the list of buffers (files) that you're currently
+editing.
+
+If you have the |'hidden'| option enabled, you can have multiple modified
+buffers open concurrently.
+
+Use the |:b| command to switch between buffers. You can use a buffer number, or
+the partial name of a buffer as the argument to the :b command. Use |c_ctrl-d|
+to show a list of possible buffer names.
+
+These three things (two commands and the 'hidden' option) combine together to
+provide a very effective buffer workflow within Vim.  In fact, comics have been
+created about this powerful combination: Entry #4 - Flying is faster than
+cycling ( http://of-vim-and-vigor.blogspot.com/p/vim-vigor-comic.html )
+
+But there are two problems with the buffer list:
+1. It isn't able to be reordered,
+2. It isn't able to be renumbered.
+
+Ordering~
+
+We sometimes wish we could re-order the buffers so that we can group related
+ones together: all text files together and all source files before them, say.
+The buffer number is fixed at the time the buffer is created and can never be
+changed throughout the lifetime of the Vim session - it'd be much nicer to be
+able to re-order these as and when we see fit. We can't do this with the buffer
+list.
+
+Numbering~
+
+When buffers are removed from the buffer list, they leave holes in the
+numbering of listed buffers. Many plugins use temporary buffers (some a LOT)
+which can leave huge holes in the numbering of buffers. If you like to jump to
+buffers by remembering their buffer number, it can be a bit unsettling to know
+that you need to jump to buffers 1, 2, 6 and 11 - it'd be much nicer to (even
+if only temporarily) renumber those buffers to: 1, 2, 3, and 4 respectively. We
+can't do this with the buffer list.
+
+While the buffer list is and always will be useful, to solve these two
+problems, we have the Argument List.
+
+Argument List~
+
+Read |arglist| for details not covered here.
+
+Each window can have a separate argument list. You're free to set and reset the
+argument list as and when you see fit.
+
+Useful Arglist Commands~
+
+To set the current window's argument list to the .c files in the src/
+directory:
+>
+  :args src/*.c
+<
+
+To do that recursively within all of the subdirectories:
+>
+  :args src/**/*.c
+<
+
+To see your current argument list:
+>
+  :args
+<
+
+To add the .h files to the argument list:
+>
+  :argadd src/**/*.h
+<
+
+To jump to an argument by partial buffer (file) name match:
+>
+  :argedit {partial name}
+<
+
+To jump to an argument by (1-based) index:
+>
+  :argument {index}
+<
+
+To perform an operation on all of your arguments in a single command:
+>
+  :argdo %s/Long live \zsthe buffer list\ze!/argument lists/ge | update
+<
+
+If you |:quit| before visiting all of the files in your argument list, Vim will
+ask you to confirm. To prevent that, use |:qa| instead.
+
+Local vs Global~
+
+If you open a new window, it will inherit the parent window's argument list.
+There are functions which will attach to the global argument list or create a
+new local argument list for the current window.
+See |:argglobal| and |:arglocal|
+
+Plugin Support via VFM~
+
+These commands are useful but a little frustrating to use in their native form.
+The VimFindsMe (|learnvim-vim-finds-me|) plugin has support for the argument
+list, removing these frustrations.
+
+Other Buffer Commands~
+
+The list of commands from |:badd| onwards in the |windows.txt| help file show
+the other buffer commands. Another excellent normal-mode command for navigating
+buffers is |ctrl-6| to switch between the |current-file| and the
+|alternate-file|.
+
+==============================================================================
 
 [UNFINISHED: The following list of topics are planned for this section]
 
-buffers (:ls, :b #, :b name, bn, bp, ctrl-6, etc)
 windows (:only, c-w et al)
 :h ins-completion
 the gx commands
@@ -1122,6 +1237,44 @@ INSTALL ~
 
 Install instructions are available from the same places above for downloading
 this plugin.
+
+
+VimFindsMe                                               *learnvim-vim-finds-me*
+
+The light-weight file finder, VimFindsMe ( https://github.com/dahu/VimFindsMe )
+now supports the argument list. By default, the <leader>ga map will open the
+current argument list into a scratch buffer (See |mapleader|). You can add and
+remove files and reorganise them as you see fit. You can see their positional
+index by enabling the :setlocal number option. When you press <enter> in this
+scratch buffer, VFM will set your argument list to these files, in this order.
+
+The |:VFMEdit| command (mapped to <leader>ge by default.) lets you filter a
+find result on your |'path'| option. If you press |<enter>| on a file from this
+window, it will be opened as a new buffer (but not added to your argument
+list). If you'd like to set your argument list to the files in the VFM scratch
+window, type:
+>
+  :VFMArgs
+<
+
+If instead you'd like to add all of the files to your argument list, type
+within the VFM scratch window:
+>
+  :VFMArgadd
+<
+
+The cumbersome combination of |:argument| and |:argedit| have been combined into
+one convenient function called VFMArgument(arg) where arg can be either an
+argument index or partial buffer name. Remember that the argument index is not
+the buffer number. You can see the list of arguments with either the |:VFMArgs|
+command or the builtin |:args| command. The buffer name given must exist in the
+current argument list. This function has a corresponding command:
+>
+  :VFMArgument {arg}
+<
+
+Which is triggered by <plug>vfm_argument (mapped to <leader>gg by default). The
+command supports argument list buffer name completion.
 
 
 3. Additional Plugins Worth Looking At       *learnvim-Additional-Plugins*
