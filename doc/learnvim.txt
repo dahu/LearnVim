@@ -101,13 +101,13 @@ the default colour scheme) and are usually right-aligned.
 When newcomers see "complicated" commands in a Vim script or someone else's
 vimrc and try to search for them in the help system, they often fail to find
 what they're looking for.  Take for example the command sequence   gqip   to
-reformat a paragraph.  Doing   :help gqip   will return the depressing
-message, "Sorry, no help for gqip".  The problem here is in understanding
-Vim's command syntax: |gq| and |ip| are separate entities. |gq| is an operator
-command (one that takes a |motion|), whereas |ip| is an object (|text-object|
-to be precise).  The take-away here is this tip: Learn to 'take apart'
-commands you see in Vim.  See |learnvim-nomenclature| for more tips on
-recognising and understanding Vim elements.
+reformat a paragraph.  Doing   :help gqip   will return the depressing message,
+"Sorry, no help for gqip".  The problem here is in understanding Vim's command
+syntax: |gq| and |ip| are separate entities. |gq| is an operator command (one
+that takes a |motion|), whereas |ip| is a |text-object|.  The take-away here is
+this tip: Learn to 'take apart' commands you see in Vim.  See
+|learnvim-nomenclature| for more tips on recognising and understanding Vim
+elements.
 
 3. Broadening Your Search                     *learnvim-expand-help-terms*
 
@@ -574,8 +574,45 @@ Commands:             Description: ~
 2. 3w                 - move forward three words (to "ministers")
 3. cwVimmers<Esc>     - change the word "ministers" to "Vimmers"
 
-                                                          *learnvim-marks*
-Marks and Mark Motions~
+* Continue practicing with the change-word command on other words within the
+  sentence.
+* Experiment with the delete-word (dw) command on various words. Use |p| to
+  paste a deleted word after the cursor.
+* Experiment with the yank-word (yw) command. Again, |p| to paste what you've
+  yanked (copied).
+* Experiment with counts, like 3dw or 2ywP.
+* Copy the original line again and try the following commands:
+>
+  0fm3dw^Pdt Ep^~
+<
+  The result should be:
+>
+  Ministers of grace and Angels defend us.
+<
+The breakdown of this command into its constituent pieces is:
+>
+  0
+  fm
+  3dw
+  ^
+  P
+  dt<space>
+  E
+  p
+  ^
+  ~
+<
+Where the new commands are: |0| |f| |^| |P| |t| |E| |~|
+
+NOTE: A seasoned Vim Golfer ( http://www.vimgolf.com/ ) will be able to make this
+text change with even less strokes. It is better though that you learn the
+regular commands first. The instructions in
+|learnvim-setting-up-a-practice-file| suggest https://github.com/dahu/VimGym as
+an alternative to vimgolf. The rationale for that is given in
+http://of-vim-and-vigor.blogspot.com/2014/04/seconds-count-not-keystrokes.html
+
+==============================================================================
+MARKS AND MARK MOTIONS                                   *learnvim-marks*
 
 Vim has marks (bookmarks) -- places you can quickly return to later.  See
 |mark-motions| for a good coverage of the many available builtin marks and how
@@ -618,12 +655,127 @@ There are many other motions in |motion.txt| than mentioned here.  It really
 would pay to eventually work your way through that text.
 
 ==============================================================================
+TAGS                                                       *learnvim-tags*
+
+Setting Up Your Tags Environment~
+
+You will need:
+
+1. A ctags generated tags file (Exuberant Ctags is the choice for most cases)
+
+Typically this is as easy as:
+>
+  ctags -R
+<
+
+in the root of your project.
+
+But if you need anything fancier than that, consult  `man ctags`  for guidance.
+
+2. A correctly set |'tags'| option
+
+The Vim default of "./tags,tags" is probably sufficient for most projects but
+you might want to include library tag files or a project-common tags file.
+
+3. A correctly set |'path'| option
+
+A good default is:
+>
+  set path=.,**
+<
+
+Which searches the directory of the current file and all directories beneath
+the current directory. See |file-searching| for more details.
+
+These options can be set in your |$MYVIMRC| or, better, within filetype
+specific plugins in "~/.vim/ftplugin/<the-filetype>.vim" or
+"~/.vim/after/ftplugin/<the-filetype>.vim"
+
+With the right setup, you will enjoy a happy tagging lifestyle.
+
+The Tag Power Commands~
+
+There are many tag commands available in Vim, but I'm going to share with you
+only a select few -- a mere dozen or so. These are the most frequently reached
+for. You can learn the other |tag| commands later.
+
+|ctrl-]|	Jump to the keyword under the cursor. Tag jumps are recorded on
+		a |tag-stack|.
+
+|ctrl-t|	Jump to older tag in the stack.
+
+|:ta|		Jump to newer tag in the stack.
+
+:0ta or :0tn	Jump to previously jumped-to tag. Use this to return to the tag
+		after wandering away from it. See |:tag| and |:tnext|
+
+:ts /something	Show a list of tags matching the pattern something. See
+		|:tselect|
+
+TIP: Use |c_ctrl-d| to show a list of tag candidates. This works with partial
+		matches too.
+
+Do you remember how to read "c_ctrl-d"? Remember what that means in Vim-speak?
+The "c_" part is the context, in this case the |command-line-mode|. "ctrl-d"
+then is the key sequence CTRL + D. See |learnvim-take-apart-commands| for a
+refresher.
+
+|g]|		Show a list of tags matching the keyword under the cursor.
+
+:tj /something   Show a list of tags matching the pattern something. If there
+		is only one tag in the list, don't show the list but instead jump directly to
+		it. See |:tjump|
+
+|g_ctrl-]|	Show a list of tags matching the keyword under the cursor. If
+		there is only one tag in the list, don't show the list but instead jump
+		directly to it.
+
+|[I|		Ordinarily, this just shows all lines in the file matching the
+		keyword under the cursor — a shortcut to ":g/<c-r><c-w>"
+
+TIP: This map (taken from the Vim help) lets you jump to one of the matches:
+>
+  :map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+  <
+
+NOTE:	Use |ctrl-c| to cancel the choice if you don't want to jump to any of
+	them.
+	Use |``| to jump back to where you were if you accidentally pressed
+	|<esc>| or |<enter>| instead.
+
+While not strictly tagging commands, these little gems are semantically
+related:
+
+|gd| and |gD|	Jump to the local or global declaration of the keyword under
+		the cursor, respectively.
+
+|gf|		Jump to the file under the cursor.
+
+While these commands may not be in your daily tag toolbox, you might call upon
+them occasionally:
+
+|:tags|		To see your current tag stack.
+
+:ptj /something	To show the tag match in the |preview-window|. See |:ptjump|
+
+|ctrl-w_ctrl-i|	and
+|ctrl-w_ctrl-d|	To split the window, showing the associated first line or
+		definition, respectively.
+
+Using tags within Vim will speed up your editing by making it easy for you to
+jump around your pile of files.
+
+While there are heavy plugins that aim to make this prettier, the seasoned
+vimmer knows that the extra bling doesn't add any real value to their edits.
+
+Vanilla, when done right, is a classy choice.
+
+==============================================================================
 
 [UNFINISHED: The following list of topics are planned for this section]
 
 buffers (:ls, :b #, :b name, bn, bp, ctrl-6, etc)
 windows (:only, c-w et al)
-tags
 :h ins-completion
 the gx commands
 registers
