@@ -179,11 +179,52 @@ key) to jump past the learnvim entries.
 5. More Resources                           *learnvim-community-resources*
 
 The Vim community is strong, helpful and polite.  The vim.wikia.com site, IRC
-channel and mailing list are all great sources of information in learning Vim:
+channel and mailing list are all great sources of information in learning Vim.
 
-* http://vim.wikia.com/wiki/Learn_to_use_help
-* Mailing Lists - http://www.vim.org/community.php
 * IRC channel #vim on irc://irc.freenode.net
+* Reddit/Vim - http://www.reddit.com/r/vim
+* Mailing Lists - http://www.vim.org/community.php
+* FAQ - http://vimhelp.appspot.com/vim_faq.txt.html
+* Google - https://www.google.com/search?q=vim+topic
+* StackOverflow - http://stackoverflow.com/questions/tagged/vim
+
+IRC channel #vim on irc://irc.freenode.net~
+
+The #vim freenode IRC channel has a fact bot called vimgor with answers to
+common problems.
+>
+  /msg vimgor filetype
+<
+will show the information behind the fact filetype.
+
+For searching, vimgor supports a listfacts command which returns all known
+facts containing the given term, e.g:
+>
+  /msg vimgor listfacts file
+<
+will list all known facts containing file.
+
+NOTE: You should explore vimgor using either /msg or /query to limit
+      interference on the #vim channel.
+
+Pastebin~
+
+Use a pastebin for more than about 3 lines of data in an example on #vim.
+
+The format of your pastebin is important. Here is an excellent example:
+https://gist.github.com/2759774
+
+Describe:~
+
+* What you want to achieve
+* Samples of your original data/text
+* The outcome you would like
+* What you have tried
+* The output of:   :set magic? gdefault?
+  (where the ? in those commands is essential)
+
+Play nice: Patience & courtesy yields better results, faster.
+
 
 ==============================================================================
 THE FUNDAMENTALS OF VIM          *lv_B_II* *learnvim-Fundamental-Concepts*
@@ -498,6 +539,9 @@ too:
 - 'spell' and	Enable spell checking in your preferred language.
   'spelllang'
 
+- 'undofile'	Enable |persistent-undo|, allowing you to undo across Vim
+		sessions.
+
 - 'whichwrap'	Control which keys allow you to wrap around start and end of
   		lines.
 
@@ -611,16 +655,42 @@ regular commands first. The instructions in
 an alternative to vimgolf. The rationale for that is given in
 http://of-vim-and-vigor.blogspot.com/2014/04/seconds-count-not-keystrokes.html
 
+QUIZ~
+
+1. What is an |operator|? What is a |motion|?
+     i. What do operators do?
+    ii. What do motions do?
+   iii. Which comes first, the operator or the motion?
+    iv. What extra modifier can operators and motions take? How do they
+        compose?
+     v. How would you change the text on a line from the cursor to the end of
+        line?
+    vi. Why is it efficient to edit using the operator+motion paradigm?
+
+2. What is a |text-object|?
+     i. What is the semantic difference between "a" and "i" in text-object
+        names?
+    ii. How would you search for a text-object for paragraphs?
+   iii. Why are text-objects a powerful way to edit text?
+
+3. Can you explain the order of commands for the edit above? Why did we move
+   the "ministers of grace" chunk before moving the "Angels" chunk?
+
+4. Can you find a smaller set of commands to effect this edit?
+
 ==============================================================================
 MARKS AND MARK MOTIONS                                   *learnvim-marks*
 
 Vim has marks (bookmarks) -- places you can quickly return to later.  See
 |mark-motions| for a good coverage of the many available builtin marks and how
-to set your own user marks.  Pay special attention to the difference between
-lower-case marks {a-z} versus uppercase marks {A-Z}.  The two symbol marks, '
-(quote) and ` (backquote) are very frequently used by accomplished vimmers.
-Experiment with double-tapping these keys to see the difference in their
-behaviour.
+to set your own user marks.
+
+Pay special attention to the difference between lower-case marks {a-z} versus
+uppercase marks {A-Z}.
+
+The two symbol marks, ' (quote) and ` (backquote) are very frequently used by
+accomplished vimmers.  Experiment with double-tapping these keys to see the
+difference in their behaviour.
 
 Law of the Instrument ~
 
@@ -654,8 +724,33 @@ What else is there to learn from |motion.txt|?
 There are many other motions in |motion.txt| than mentioned here.  It really
 would pay to eventually work your way through that text.
 
+QUIZ~
+
+1.  What is a mark? Why are they useful?
+
+2.  What is the difference between ' and ` with respect to marks?
+
+3.  What are the '[,'] and '<,'> marks?
+
+4.  What is the difference between lower-case and upper-case marks?
+
+5.  Can you think of some good uses for upper-case marks?
+
+6.  How do you return to the position before the latest jump?
+
+7.  What is the difference between   (   and   `(   ?
+
+8.  Which commands are considered jump-motions? What does that mean?
+
+9.  How do you move up and down the jump-list?
+
+10. How do you move up and down the change-list?
+
+
 ==============================================================================
 TAGS                                                       *learnvim-tags*
+
+Read |tags-and-searches| for extra detail not covered here.
 
 Setting Up Your Tags Environment~
 
@@ -699,8 +794,8 @@ There are many tag commands available in Vim, but I'm going to share with you
 only a select few -- a mere dozen or so. These are the most frequently reached
 for. You can learn the other |tag| commands later.
 
-|ctrl-]|	Jump to the keyword under the cursor. Tag jumps are recorded on
-		a |tag-stack|.
+|ctrl-]|	Jump to the definition of the keyword under the cursor. Tag
+		jumps are recorded on a |tag-stack|.
 
 |ctrl-t|	Jump to older tag in the stack.
 
@@ -769,6 +864,28 @@ While there are heavy plugins that aim to make this prettier, the seasoned
 vimmer knows that the extra bling doesn't add any real value to their edits.
 
 Vanilla, when done right, is a classy choice.
+
+QUIZ~
+
+1. What is a tag? Why are they useful?
+
+2. With respect to options like |'path'| and |'tags'| what do the following
+   mean:
+     i. .
+    ii. *
+   iii. **
+    iv. an empty list element, expressed as two successive commas: ,,
+
+3. How do you jump to the definition of the keyword under the cursor?
+
+4. How do you jump back to older tags in the tag-stack?
+
+5. How do you return to the last tag-jump position? Why is this useful?
+
+6. Give two methods for expanding/completing tag names on the command-line.
+
+7. How do you create a tags file? How do you keep it up to date?
+
 
 ==============================================================================
 BUFFERS AND ARGS                                   *learnvim-buffers-args*
@@ -885,6 +1002,27 @@ The list of commands from |:badd| onwards in the |windows.txt| help file show
 the other buffer commands. Another excellent normal-mode command for navigating
 buffers is |ctrl-6| to switch between the |current-file| and the
 |alternate-file|.
+
+QUIZ~
+
+1. What is a buffer? What is the buffer list?
+
+2. What are the two big disadvantages of the buffer list?
+
+3. What is the argument list?
+
+4. How do you show the argument list?
+
+5. How do you set the argument list?
+
+6. How do you add a file to the argument list?
+
+7. How do you jump to a file in the argument list?
+    i. by name?
+   ii. by number?
+
+8. How does the VFM plugin make using the argument list easier?
+
 
 ==============================================================================
 
@@ -1032,6 +1170,30 @@ subsequent recursive invocation with the command   @a   and switching off
 recording with   q   hence   j0@aq
 
 You're done recording.  Use   @a   to run it.
+
+QUIZ~
+
+1.  What is a macro?
+
+2.  When is a macro a good solution?
+
+3.  What type of tasks are better done using plain ex commands instead of a
+    macro?
+
+4.  How do you record a macro?
+
+5.  How do you finish recording a macro?
+
+6.  How do you continue recording a macro after having stopped previously?
+
+7.  How do you recursively call macros?
+
+8.  What is a quick way to clear a macro register?
+
+9.  How do you run a macro? What is a shortcut for running the previous macro
+    again?
+
+10. How are you using macros to improve your editing experience?
 
 -------------------------------------------------------------------------------
 
