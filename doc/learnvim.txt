@@ -1,5 +1,9 @@
 *learnvim.txt*  A Suggested Path for Learning Vim
 
+
+		VIM REFERENCE MANUAL	by Barry Arthur (bairui)
+
+
 This help file introduces fundamental concepts, offers concrete advice for
 correctly configuring a new Vim instance and outlines a progressive set of
 topics for the enthusiastic newcomer to study and practice.
@@ -8,12 +12,6 @@ This is not a typical tutorial for Vim in that many topics are merely
 introduced here with further study deferred to the excellent Vim Reference
 Guide (|reference_toc|) and User Manual (|usr-toc|).
 
-This file is structured with the following conventions:
-
-CHAPTER HEADINGS are all caps and preceded by a line of # characters.
-SECTIONS within a Chapter are all caps and preceded by a line of = characters.
-1. Topics within a Section are numbered, in Title Case.
-Recipes are blocked in lines of - characters.
 
 ##############################################################################
 THE VIM LEARNING PATH                             *learnvim-path-overview*
@@ -48,7 +46,7 @@ On completing this section, you will:
 |lv_B_IV|	Have created your own vimrc and gvimrc configuration files.
 
 ==============================================================================
-USING HELP                                 *lv_B_I* *learnvim-Using-Help*
+USING HELP                                  *lv_B_I* *learnvim-Using-Help*
 
 Vim's internal help system is comprehensive, well indexed and easy to
 navigate.  Beginners however often have difficulty knowing what to search for
@@ -96,6 +94,27 @@ the default colour scheme) and are usually right-aligned.
 		      is considered to be the essential knowledge you need at
 		      this stage.
 
+                                           *pathogen-and-vim-help-sidebar*
+----------Only For The Adventurous (Safe To Skip)-----------------------------
+Install |learnvim-pathogen| so that you can easily install plugins in Vim. When
+you've installed pathogen, test that you've done it right by installing
+https://github.com/dahu/vim-help . Use the following to check for successul
+installation:
+
+After You Have Installed pathogen and vim-help:~
+
+1. run |:Helptags| -- it should execute silently. If you see an error like: >
+
+  E492: Not an editor command: Helptags
+<
+  Then you have not successfully installed pathogen. Refer again to its
+  installation instructions online.
+
+2. try `:help vim-help` -- it should open the help file for vim-help.
+
+|vim-help| eases navigation within help files. Read its help to see how.
+------------------------------------------------------------------------------
+
 2. Trees Within The Forest                  *learnvim-take-apart-commands*
 
 When newcomers see "complicated" commands in a Vim script or someone else's
@@ -130,7 +149,7 @@ you would never have guessed it would end like that.
 To search the help system and return all matches, use the |:helpgrep| command.
 
 Recipe: Using helpgrep to broaden your search   *learnvim-recipe-helpgrep*
--------------------------------------------------------------------------{{{1
+------------------------------------------------------------------------------
 Problem: ~
 
 You want to search by hexadecimal value, for example the character represented
@@ -174,7 +193,7 @@ Note: Because this helpfile describes this process, the quickfix window will
 have entries from here, and because "learnvim" precedes "version",
 alphabetically, you will need to repeat your search several times (use the  n
 key) to jump past the learnvim entries.
--------------------------------------------------------------------------1}}}
+------------------------------------------------------------------------------
 
 5. More Resources                           *learnvim-community-resources*
 
@@ -225,6 +244,62 @@ Describe:~
 
 Play nice: Patience & courtesy yields better results, faster.
 
+NOTE: Regularly throughout LearnVim, you will be quizzed to help reinforce your
+      learning. You're welcome.
+
+QUIZ~
+
+1. Quick! What one thing would you really like to know more about in Vim right
+   now? Make a note of it and we'll return to this later.
+
+2. What does the following command do? >
+
+     FodFox
+<
+     i. What methods will you use to find the answer?
+    ii. What mistakes did you make when searching?
+
+3. What two methods can you use to show the choices available for commands on
+   the |Cmdline| ?
+
+4. How do you navigate inside a Vim help file? How do you follow links and
+   return back from followed links? Name one plugin that eases Vim help file
+   navigation.
+
+NOTE: Move your cursor to the QUIZ ANSWERS line below and press |zo| to see
+     inside |folds|
+
+QUIZ ANSWERS {{{1~
+
+2. FodFox is not a command in Vim. Well, not a single command.
+
+** If you used Google, you failed. Most Vim commands are simply not searchable
+   online.
+
+** If you tried `:help FodFox`, you failed. Most Vim commands that you will see
+   in the wild are actually a collection of commands and they are not separated
+   for your convenience. You need to learn to separate them yourself.  Refer
+   back to |learnvim-take-apart-commands| for a refresher.
+
+** If you tried various different :help searches on the various pieces within
+   the command, \o/ for you. The actual pieces are: |F| |d| |x|
+
+3. Use |ctrl-d| and |<tab>| to show completion options on the |Cmdline|
+
+4. |ctrl-]| follows a link (tag) in a help file. |ctrl-t| jumps back.
+
+   The https://github.com/dahu/vim-help plugin is one way to ease help
+   navigation. See |pathogen-and-vim-help-sidebar| if you skipped it earlier.
+   All vimmers should be adventurous.
+
+1. Did you note down earlier the answer to this question: >
+
+   What one thing would you really like to know more about in Vim right now?
+<
+   Using your newfound Vim help skills, try now to find out about that one
+   thing you wrote down.
+
+}}}1
 
 ==============================================================================
 THE FUNDAMENTALS OF VIM          *lv_B_II* *learnvim-Fundamental-Concepts*
@@ -267,8 +342,8 @@ window		A window is a place where a buffer can be displayed.  There is
 		always at least one window open.  A buffer can be displayed in
 		any number of windows simultaneously.  Having a buffer that
 		isn't displayed in a window is useful when switching between
-		different tasks, letting you walk away from half-finished
-		work (See |'hidden'|).  Having a buffer that is displayed in two
+		different tasks, letting you walk away from half-finished work
+		(See |'hidden'|).  Having a buffer that is displayed in two
 		windows can be useful when trying to work on one part of the
 		buffer based upon some context provided in another part of the
 		buffer that's far away.
@@ -285,7 +360,7 @@ Note: Trying to create a one-to-one relationship between tab pages and buffers
       single tab page won't work; at least, not without cutting you off from
       many useful commands.
 
-2. Nomenclature                                *learnvim-nomenclature*
+2. Nomenclature                                    *learnvim-nomenclature*
 
 Like any large and complex system, Vim has a dense vocabulary of terms
 surrounding its interface, operation and configuration.  Understanding this
@@ -369,7 +444,7 @@ Use the |:options| command to show an interactive window of all Vim's settings
 including their current values and a brief description, grouped by function.
 
 Recipe: Using the Options Browser to search for and change a Vim setting ~
--------------------------------------------------------------------------{{{1
+------------------------------------------------------------------------------
 Problem: ~
 
 You want to change the behaviour of something in Vim (like the tab & indent
@@ -419,7 +494,7 @@ you come back to your ~/.vimrc file in six months' time you will be able to
 understand what the setting means.  So, change that line to:
 >
  	set smarttab
--------------------------------------------------------------------------1}}}
+------------------------------------------------------------------------------
 
 ==============================================================================
 MAKING SETTINGS PERMANENT          *lv_B_IV* *learnvim-permanent-settings*
@@ -648,8 +723,8 @@ The breakdown of this command into its constituent pieces is:
 <
 Where the new commands are: |0| |f| |^| |P| |t| |E| |~|
 
-NOTE: A seasoned Vim Golfer ( http://www.vimgolf.com/ ) will be able to make this
-text change with even less strokes. It is better though that you learn the
+NOTE: A seasoned Vim Golfer ( http://www.vimgolf.com/ ) will be able to make
+this text change with even less strokes. It is better though that you learn the
 regular commands first. The instructions in
 |learnvim-setting-up-a-practice-file| suggest https://github.com/dahu/VimGym as
 an alternative to vimgolf. The rationale for that is given in
@@ -679,7 +754,7 @@ QUIZ~
 4. Can you find a smaller set of commands to effect this edit?
 
 ==============================================================================
-MARKS AND MARK MOTIONS                                   *learnvim-marks*
+MARKS AND MARK MOTIONS                                    *learnvim-marks*
 
 Vim has marks (bookmarks) -- places you can quickly return to later.  See
 |mark-motions| for a good coverage of the many available builtin marks and how
@@ -818,12 +893,12 @@ refresher.
 |g]|		Show a list of tags matching the keyword under the cursor.
 
 :tj /something   Show a list of tags matching the pattern something. If there
-		is only one tag in the list, don't show the list but instead jump directly to
-		it. See |:tjump|
+		is only one tag in the list, don't show the list but instead
+		jump directly to it. See |:tjump|
 
 |g_ctrl-]|	Show a list of tags matching the keyword under the cursor. If
-		there is only one tag in the list, don't show the list but instead jump
-		directly to it.
+		there is only one tag in the list, don't show the list but
+		instead jump directly to it.
 
 |[I|		Ordinarily, this just shows all lines in the file matching the
 		keyword under the cursor — a shortcut to ":g/<c-r><c-w>"
@@ -1055,10 +1130,10 @@ Quickfix window
 
 [/UNFINISHED]
 
---------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 Recipe: Setting Up A Practice File   *learnvim-setting-up-a-practice-file*
--------------------------------------------------------------------------{{{1
+------------------------------------------------------------------------------
 New!:~
 You can use the instructions below to set up a practice file, OR you can
 install https://github.com/dahu/VimGym , a plugin designed for this exact
@@ -1106,7 +1181,7 @@ Tip: You might like to set another global mark, 'V, for your ~/.vimrc file.
 
 Now, type |ctrl-o| enough times until you get back to wherever it was you
 jumped here from. :)
--------------------------------------------------------------------------1}}}
+------------------------------------------------------------------------------
 
 ##############################################################################
 MODERATE TOPICS                                 *lv_M* *learnvim-Moderate*
@@ -1162,10 +1237,10 @@ real recording.
 
 Start in the Right Place~
 
-To allow the recursive invocation of your macro to be actually useful, you
-have to arrange for it to start in the right place.  This could be on the next
-line, or at the next word, or next paragraph, or block, or...  etc.  The command
-j0 moves down a line and to the first column of the screen, ready for the
+To allow the recursive invocation of your macro to be actually useful, you have
+to arrange for it to start in the right place.  This could be on the next line,
+or at the next word, or next paragraph, or block, or...  etc.  The command j0
+moves down a line and to the first column of the screen, ready for the
 subsequent recursive invocation with the command   @a   and switching off
 recording with   q   hence   j0@aq
 
@@ -1195,7 +1270,7 @@ QUIZ~
 
 10. How are you using macros to improve your editing experience?
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 [UNFINISHED: The following list of topics are planned for this section]
 
@@ -1231,8 +1306,8 @@ ADVANCED TOPICS                                 *lv_A* *learnvim-Advanced*
 
 |lv_A_I|	Becomming a VimL Master~
 
---------------------------------------------------------------------------------
-                                                *lv_A_I* *learnvim-viml-master*
+------------------------------------------------------------------------------
+                                           *lv_A_I* *learnvim-viml-master*
 
 Becomming a VimL Master~
 
@@ -1249,6 +1324,7 @@ Trainee~
 ** |cmdline-lines|
 ** |cmdline-ranges|
 ** |cmdline-special|
+
 * Read the following parts of |options.txt|
 ** |set-option|
 ** The following specific options:
@@ -1259,7 +1335,9 @@ Trainee~
 *** |'maxfuncdepth'|
 *** |'runtimepath'|
 *** |'verbose'|
+
 * Read all of |pattern.txt|
+
 * Read the following parts of |eval.txt|
 ** |variables|
 ** |expression-syntax| (skim)
@@ -1267,6 +1345,7 @@ Trainee~
 ** |user-functions|
 ** |expression-commands|
 ** |eval-examples|
+
 * Read the following sections of |usr_41.txt|
 ** |41.1|
 ** |41.2|
@@ -1276,45 +1355,69 @@ Trainee~
 ** |41.6|
 ** |41.7|
 ** |41.8|
+
 * Read |function-list| (Vim’s built-in VimL library)
+
 * Read http://www.ibm.com/developerworks/linux/library/l-vim-script-1/index.html
+
 * Read http://learnvimscriptthehardway.stevelosh.com/
 
 Novice~
 
 * Contribute bug fixes and small enhancements to existing plugins.
+
 * Read |map.txt|
+
 * Read |'timeout'| option
+
 * Read |'maxmapdepth'| option
+
 * Read |usr_40.txt|
+
 * Read |autocmd.txt|
+
 * Read |filetype.txt|
+
 * Read |various.txt|
+
 * In regard to |:normal|, read |motion.txt|
 
 Worker~
 
 * Read |eval.txt|
+
 * Read |usr_41.txt| (again)
-* Create three or more plugins under the supervision of a Professional or Expert
+
+* Create three or more plugins under the supervision of a Professional or
+  Expert
+
 * Assist Novices
 
 Professional~
 
 * Actively support five or more peer-reviewed, fully |usr_41| compliant plugins
+
 * Thoroughly document all supported plugins
+
 * Supervise Workers
+
 * Assist in the development of reference & resource materials
+
 * Participate in discussions about best practice for VimL development
 
 Expert~
 
 * Create new tools and libraries for VimL development
-* Create new/interesting/engaging/fun reference material or tutorials for an aspect of Vim/VimL
-* Mentor, guide and train other VimLers
-* Maintain a regular presence on Stack Overflow, the vim-dev mailing lists, #vim or #viml as an authority and guide on advanced Vim and VimL topics
 
---------------------------------------------------------------------------------
+* Create new/interesting/engaging/fun reference material or tutorials for an
+  aspect of Vim/VimL
+
+* Mentor, guide and train other VimLers
+
+* Maintain a regular presence on Stack Overflow, the vim-dev mailing lists,
+  #vim or #viml as an authority and guide on advanced Vim and VimL topics
+
+------------------------------------------------------------------------------
 
 [UNFINISHED: The following list of topics are planned for this section]
 
@@ -1401,7 +1504,7 @@ Install instructions are available from the same places above for downloading
 this plugin.
 
 
-VimFindsMe                                               *learnvim-vim-finds-me*
+VimFindsMe                                         *learnvim-vim-finds-me*
 
 The light-weight file finder, VimFindsMe ( https://github.com/dahu/VimFindsMe )
 now supports the argument list. By default, the <leader>ga map will open the
@@ -1425,15 +1528,14 @@ within the VFM scratch window:
   :VFMArgadd
 <
 
-The cumbersome combination of |:argument| and |:argedit| have been combined into
-one convenient function called VFMArgument(arg) where arg can be either an
+The cumbersome combination of |:argument| and |:argedit| have been combined
+into one convenient function called VFMArgument(arg) where arg can be either an
 argument index or partial buffer name. Remember that the argument index is not
 the buffer number. You can see the list of arguments with either the |:VFMArgs|
 command or the builtin |:args| command. The buffer name given must exist in the
 current argument list. This function has a corresponding command:
 >
-  :VFMArgument {arg}
-<
+  :VFMArgument {arg} <
 
 Which is triggered by <plug>vfm_argument (mapped to <leader>gg by default). The
 command supports argument list buffer name completion.
@@ -1517,4 +1619,4 @@ http://vim.wikia.com (http://vim.wikia.com/wiki/Example_vimrc).  A more
 annotated version of the vimrc options can be found at
 http://github.com/loota/vimfiles/blob/master/vim_usual_options.txt.
 
- vim:noet:sw=8:nosmarttab:sts=0:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:fdm=marker:ft=help:norl:noro:modifiable:
+ vim:noet:sw=8:nosmarttab:sts=0:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:fen:fdm=marker:ft=help:norl:noro:modifiable:
