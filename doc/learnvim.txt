@@ -314,7 +314,8 @@ begin turning from vertical.  Here is a good place to start:
 
 |quickref|	Vim's Quick Reference:  An awesome overview and cheat-sheet.
 		Of particular interest are the |option-list|, text objects
-		(|Q_to|) and pattern search summary (|Q_pa|).
+		(|Q_to|), pattern search summary (|Q_pa|), Repeating commands
+		(|Qre|), and Undo/Redo commands (|Qur|).
 
 |vim-modes|	Vim is a modal editor.  Understanding the consequences and
 		advantages of that is essential to mastering Vim.  Be sure to
@@ -678,11 +679,15 @@ And start using them with this motion:
 |w|	(word) To operate from the current word under the cursor.  See
 	|word-motions| for the others in this category.
 
-EXERCISES ~
+EXERCISES:~
 
 Copy the following line to your practice file (|setting-up-a-practice-file|):
 >
   Angels and ministers of grace defend us.
+<
+TARGET:~
+>
+  Angels and Vimmers of grace defend us.
 <
 Start with your cursor anywhere on that line in your practice buffer.
 Type the following commands:
@@ -704,7 +709,7 @@ Commands:             Description: ~
 >
   0fm3dw^Pdt Ep^~
 <
-  The result should be:
+  TARGET:~
 >
   Ministers of grace and Angels defend us.
 <
@@ -752,6 +757,73 @@ QUIZ~
    the "ministers of grace" chunk before moving the "Angels" chunk?
 
 4. Can you find a smaller set of commands to effect this edit?
+
+
+==============================================================================
+REPEATING CHANGES                                        *learnvim-repeat*
+
+We often need to repeat a change, insert or command many times. Doing this
+manually is boring, frustrating and prone to mistakes.
+
+* Use |.| to repeat the prior normal mode change command.
+
+* Use |;| to repeat the prior |f| |F| |t| |T| command in the same direction.
+
+* Use |,| to repeat the prior |f| |F| |t| |T| command in the opposite direction.
+
+EXERCISE: ~
+
+Copy the following line to your practice file (|setting-up-a-practice-file|):
+>
+  It's type, write, might, flight fun, fun, fun, fun, fun!
+<
+TARGET:~
+>
+  It's typey, writey, mighty, flighty fun, fun, fun, fun, fun!
+<
+
+Start with your cursor anywhere on that line in your practice buffer.
+Type the following commands:
+
+Commands:             Description: ~
+
+1. ^         - move to the first non-whitespace character on the line |^|
+2. fe        - find the next 'e' character                            |f|
+3. ay<esc>   - append a 'y' character                                 |a|
+4. ;         - repeat the prior find in the same direction            |;|
+5. .         - repeat the prior change (insert 'y')                   |.|
+6. ft        - find the next 't' character
+7. .         - repeat the prior change (insert 'y')
+8. ;.        - repeat the prior find and change commands
+
+
+* Use <c-r>. in insert mode to repeat the prior insert. See |i_ctrl-r| for
+  others.
+
+* Use @: in normal mode to repeat the last |ex-cmd|
+
+* Use |n| and |N| to repeat the prior search in the same/opposite direction
+  respectively.
+
+* Use @@ in normal mode to repeat the prior macro. See |learnvim-Macros| for an
+  introduction to macros.
+
+QUIZ~
+
+1. How do you repeat the prior normal mode text change?
+
+2. How do you repeat the prior insert? There are two answers.
+
+3. How do you repeat the prior ex command?
+
+4. How do you repeat the prior macro?
+
+5. How do you repeat the prior find command?
+
+6. How do you repeat the prior search command?
+
+7. What is the difference between a find and a search?
+
 
 ==============================================================================
 MARKS AND MARK MOTIONS                                    *learnvim-marks*
@@ -1439,6 +1511,9 @@ Vim is awesome.  It has so much goodness baked right into it, it could very
 well meet all your editing needs, right out of the box.  What it -also- has is
 an awesome plugin system for extending every possible aspect of Vim you would
 want.  http://www.vim.org/scripts is the canonical source of Vim plugins.
+
+https://github.com/vim-scripts is a mirror of the canonical list. Many plugin
+developers also share through their own github accounts.
 
 2. Recommended Plugins                      *learnvim-Recommended-Plugins*
 
