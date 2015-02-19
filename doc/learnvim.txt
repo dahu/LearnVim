@@ -138,7 +138,18 @@ Depending on your settings ('wildmode' and 'wildmenu'), <Tab> will either
 cycle through available matches or show a similar list to ctrl-d (and allow
 you to cycle through that list).
 
-4. The Shotgun Approach                                *learnvim-helpgrep*
+4. Don't Panic!                                 *learnvim-help-bang-terms*
+
+A lot of commands have `!` (bang) variants and are not listed separately in the
+help system. The bang variants behave differently to their bare forms, but that
+behaviour is different for each command. If you try to search for the bang
+form, like `:help :next!` and get an error message like "E149: Sorry, no help
+for next!" then you should search again for the bare form, `:help :next` and
+read until you find mention of the `!` and its effect.
+
+For a spot of comic relief, try: `:help!`
+
+5. The Shotgun Approach                                *learnvim-helpgrep*
 
 Sometimes you don't know the exact search term you should be using to find
 what you need in the help files.  It can be frustrating trying to guess the
@@ -195,7 +206,7 @@ alphabetically, you will need to repeat your search several times (use the  n
 key) to jump past the learnvim entries.
 ------------------------------------------------------------------------------
 
-5. More Resources                           *learnvim-community-resources*
+6. More Resources                           *learnvim-community-resources*
 
 The Vim community is strong, helpful and polite.  The vim.wikia.com site, IRC
 channel and mailing list are all great sources of information in learning Vim.
@@ -266,6 +277,8 @@ QUIZ~
    return back from followed links? Name one plugin that eases Vim help file
    navigation.
 
+5. How do you find help for `:write!` ?
+
 NOTE: Move your cursor to the QUIZ ANSWERS line below and press |zo| to see
      inside |folds|
 
@@ -291,6 +304,9 @@ QUIZ ANSWERS {{{1~
    The https://github.com/dahu/vim-help plugin is one way to ease help
    navigation. See |pathogen-and-vim-help-sidebar| if you skipped it earlier.
    All vimmers should be adventurous.
+
+5. If you tried `:help :write!`, Vim told you "E149: Sorry, no help for
+   :write!". Look up the bare form and read until you find mention of `!`.
 
 1. Did you note down earlier the answer to this question: >
 
