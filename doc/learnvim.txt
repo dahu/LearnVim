@@ -442,7 +442,7 @@ options.  As a quick overview:
 
 - :set option=value	Sets "option" to "value"
 - :set option?		Shows the current value of "option"
-- :echo &option 	An alternate way to show the value of "option"
+- :echo &option		An alternate way to show the value of "option"
 
 E.g. To check the current value of 'shiftwidth' and then change it to 4:
 >
@@ -472,7 +472,7 @@ Solution: ~
 
 For tabs and indents:
 >
- 	:options
+	:options
 <
 Scroll down the Table of Contents and press Enter on the '15 tabs and
 indenting' line.  This will jump you to the set of options controlling how Vim
@@ -480,7 +480,7 @@ manages indentation.
 
 Likewise, for the GUI Toolbar problem:
 >
- 	:options
+	:options
 <
 Scroll down or search for GUI (/GUI) and press Enter on the '10 GUI' line.
 
@@ -497,20 +497,20 @@ Example: ~
 Say you're browsing the options and decide that you want to enable 'smarttab'.
 You see the line:
 >
- 	set nosta	sta
+	set nosta	sta
 <
 If you press Enter on that line then you will enable smarttabs.  Copying that
 line to your ~/.vimrc file will work, but it's unnecessary and unsightly to
 have the option turned off and then on like that.  So, when adding this to your
 ~/.vimrc, change the line like this:
 >
- 	set sta
+	set sta
 <
 Actually, it is a good practice to use the full name of an option so that when
 you come back to your ~/.vimrc file in six months' time you will be able to
 understand what the setting means.  So, change that line to:
 >
- 	set smarttab
+	set smarttab
 ------------------------------------------------------------------------------
 
 ==============================================================================
@@ -532,7 +532,7 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	" Buffer (File) Options:
 	set hidden                     " Edit multiple unsaved files at the same time
 	set confirm                    " Prompt to save unsaved changes when exiting
-	                               " Keep various histories between edits
+				       " Keep various histories between edits
 	set viminfo='1000,f1,<500,:100,/100,h
 
 	" Search Options:
@@ -554,7 +554,7 @@ Put this in your personal vimrc file (|learnvim-personal-vimrc-filename|):
 	set showcmd                    " Show (partial) command in status line.
 	set laststatus=2               " Always show a status line
 	set cmdheight=2                " Prevent "Press Enter" messages
-	                               " Show detailed information in status line
+				       " Show detailed information in status line
 	set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
 
 	" Interface Options:
@@ -626,7 +626,7 @@ too:
 		among programmers.  http://www.jwz.org/doc/tabs-vs-spaces.html
 
 - 'colorscheme'	See |:syn-default-override|.  There are many more themes to
- 		choose from at htp://www.vim.org/scripts/
+		choose from at htp://www.vim.org/scripts/
 
 - 'spell' and	Enable spell checking in your preferred language.
   'spelllang'
@@ -635,7 +635,7 @@ too:
 		sessions.
 
 - 'whichwrap'	Control which keys allow you to wrap around start and end of
-  		lines.
+		lines.
 
 
 3. Your Own gvimrc File                                  *learnvim-gvimrc*
@@ -879,7 +879,7 @@ Becoming an Expert Navigator~
 
 What else is there to learn from |motion.txt|?
 
-* |object-motions| 	Larger objects, like sentences, paragraphs and
+* |object-motions|	Larger objects, like sentences, paragraphs and
 			sections.
 * |jump-motions|	Moving up and down the jump list as well as the
 			related |change-list-jumps|.
@@ -1055,6 +1055,12 @@ BUFFERS AND ARGS                                   *learnvim-buffers-args*
 
 Read |windows-intro| for an overview of buffers, windows and tab-pages in Vim.
 
+A visual introduction to Vim's Buffers, Windows and Tabs:
+http://i.imgur.com/3ULsNaX.jpg
+
+An excellent explanation of buffers, windows and tabs in Vim:
+http://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs/26710166#26710166
+
 The Buffer List~
 
 Use the |:ls| command to show the list of buffers (files) that you're currently
@@ -1072,7 +1078,24 @@ provide a very effective buffer workflow within Vim.  In fact, comics have been
 created about this powerful combination: Entry #4 - Flying is faster than
 cycling ( http://of-vim-and-vigor.blogspot.com/p/vim-vigor-comic.html )
 
-But there are two problems with the buffer list:
+The map from the Flying cartoon:
+>
+  nnoremap <leader>l :ls<cr>:b<space>
+<
+
+Operating On All Buffers~
+
+To perform a series of commands on all open buffers, use |:bufdo|.
+
+Example: To search for `something` in all buffers:
+>
+  :call setqflist([])
+  :bufdo grepadd! something %
+<
+
+Buffer List Problems~
+
+There are two problems with the buffer list:
 1. It isn't able to be reordered,
 2. It isn't able to be renumbered.
 
@@ -1188,10 +1211,125 @@ QUIZ~
 
 
 ==============================================================================
+WINDOWS                                                       *learnvim-windows*
+
+See the user manual section |usr_08.txt| for an introduction to using windows in
+Vim. The reference manual for this section is |windows.txt|.
+
+A visual introduction to Vim's Buffers, Windows and Tabs:
+http://i.imgur.com/3ULsNaX.jpg
+
+An excellent explanation of buffers, windows and tabs in Vim:
+http://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs/26710166#26710166
+
+QUIZ~
+
+1. What command should you use to prevent accidentally exiting Vim when closing
+   a window?
+
+2. The normal mode command |CTRL-W_f| edits the file under the cursor in a new
+   window.
+    i. What CTRL-W command is equivalent to the |:only| command?
+   ii. Do all of Vim's Window ex commands have a counterpart through CTRL-W?
+
+3. What single command is equivalent to:
+>
+    :split | enew
+<
+
+4. |:vsplit| and |:vnew| are explicit commands for working with vertical
+   windows. What can you use if there is no explicit `:v...` command for a
+   window operation that you'd like to do vertically?
+
+5. What's the difference between |CTRL-W_h| and |CTRL-W_H|?
+
+
+Operating on Multiple Windows~
+
+You would have found |:qall| and |:wall| in |08.6| but there was no mention
+there about performing an action other than closing or saving on all windows. To
+do this, we need to use the |:windo| command.
+
+|'colorcolumn'|, |'cursorcolumn'|, |'cursorline'|, |'list'|, |'number'| and
+those controlling |folding| are all examples of useful options to set for all
+windows simultaneously.
+
+Example: To reload all of the buffers in the currently visable windows:
+>
+  :windo e
+<
+
+Compare |:windo| with |:bufdo|. How does the following command differ from the
+:windo one above?
+>
+  :bufdo e
+<
+
+
+Statusline~
+
+Most applications have a statusline at the bottom of windows containing various
+pieces of useful information about current state. Vim provides this in two ways:
+
+1. The more simplistic |'ruler'|, and
+2. The more featureful |'statusline'|.
+
+Scrooloose has a colourful introduction to Vim's statusline:
+http://got-ravings.blogspot.sg/2008/08/vim-pr0n-making-statuslines-that-own.html
+
+A suggested statusline is:
+>
+  set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]\%{&paste?'\ paste':''}%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
+<
+See |'statusline'| for details about the chosen options.
+
+NOTE: The |'laststatus'| option determins which windows show a statusline.
+      To see a statusline in all windows:
+>
+        set laststatus=2
+<
+
+
+==============================================================================
+TABS                                                             *learnvim-tabs*
+
+See the user manual section |08.9| for an introduction to using tabs in
+Vim. The reference manual for this section is |tabpage.txt|.
+
+A visual introduction to Vim's Buffers, Windows and Tabs:
+http://i.imgur.com/3ULsNaX.jpg
+
+An excellent explanation of buffers, windows and tabs in Vim:
+http://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs/26710166#26710166
+
+NOTE: Trying to force one buffer to stay in one tab page is highly unrecommended
+because it violates Vim's natural workflow. See tabpages instead as separate
+workspaces. Open a new tab page when you need to perform a task that will
+interfere with the window layout or buffer positions you're currently working
+with. Some typical examples where a new tab page is suggested:
+
+1. Opening a different help file to the one you're currently browsing.
+2. Temporarily working on a different project.
+3. Creating a pristine environment for a diff.
+
+QUIZ~
+
+1. Why is "tabpage" such a bad name for this feature in Vim? What are some
+   better names?
+
+2. If |:bufdo| operates on all buffers and |:windo| operates on all windows,
+   what command do you think operates on all tab-pages?
+
+3. What is the normal mode command similar to |CTRL-W_f| for opening the file
+   under the cursor in a new tab page?
+
 
 [UNFINISHED: The following list of topics are planned for this section]
 
-windows (:only, c-w et al)
+Quickfix window
+  - make
+    :cn / :cp
+
 :h ins-completion
 the gx commands
 registers
@@ -1211,10 +1349,6 @@ Use abbreviations
 
 Show -where- a setting was set
 :verbose set sw?
-
-Quickfix window
-  - make
-    :cn / :cp
 
 [/UNFINISHED]
 
@@ -1510,7 +1644,6 @@ Expert~
 [UNFINISHED: The following list of topics are planned for this section]
 
 custom commands
-customising the menu in gvim
 vim scripting
 variable scope (g: s: a:, etc)
 writing plugins
