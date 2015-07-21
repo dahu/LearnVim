@@ -1061,6 +1061,57 @@ http://i.imgur.com/3ULsNaX.jpg
 An excellent explanation of buffers, windows and tabs in Vim:
 http://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs/26710166#26710166
 
+Editing Files~
+
+The reference for this section is |editing.txt|.
+
+Commands of interest:
+|:edit|   |:enew|    |:find|
+|:write|  |:saveas|  |:quit|
+|CTRL-^|  |gf|
+
+Read:
+|07.1| - Editing multiple files
+|07.2| - Listing files
+|07.3| - Jumping between files
+
+NOTE: The author does not recommend the use of the |:next| and |:previous|
+commands for navigating between files. Use the method shown in
+|learnvim-buffer-list| Instead.
+
+
+Working Directory and Paths~
+
+Points of interest:
+|'path'|  |file-searching|
+|:cd|     |:lcd|     |:pwd|
+
+The default unix |'path'| is ".,/usr/include,," which is not terribly useful to
+many, especially if you're not a C programmer. Instead, use this as your default
+path:
+>
+  set path=.,**
+<
+And override it with more specific details on a per-project basis.
+
+The |:find| command searches your |'path'|, however it is still limited (like
+the |:edit| command) to opening only one file at a time. Use the |:args| command
+to open multiple files simultaneously.
+
+Browsing Files~
+
+The |netrw| plugin comes standard with Vim and is useful as a file browser. It
+can also be used to edit remote files through SSH, HTTP, FTP and other protocols.
+
+Fuzzy File Finders~
+
+There are several external plugins available for quickly finding and editing
+files in your project. Two recommended ones are:
+
+* https://github.com/kien/ctrlp.vim
+* https://github.com/dahu/VimFindsMe                     |learnvim-vim-finds-me|
+
+                                                          *learnvim-buffer-list*
 The Buffer List~
 
 Use the |:ls| command to show the list of buffers (files) that you're currently
@@ -1188,6 +1239,7 @@ The list of commands from |:badd| onwards in the |windows.txt| help file show
 the other buffer commands. Another excellent normal-mode command for navigating
 buffers is |ctrl-6| to switch between the |current-file| and the
 |alternate-file|.
+
 
 QUIZ~
 
@@ -1767,14 +1819,11 @@ command supports argument list buffer name completion.
 
 3. Additional Plugins Worth Looking At       *learnvim-Additional-Plugins*
 
-* NERD Tree - File browser
-* NERD Commenter - Comment/uncomment code efficiently
-* TagBar - Tag manager
-* CSApprox - 88/256 colour terminal emulator for gui only colourschemes
-* Snipmate - Snippets and Templates
-* SearchParty - Extended Search, Replace, Highlight and Match commands
+* Commentary      - Comment/uncomment code efficiently
+* Ultisnips       - Code Snippets
+* SearchParty     - Extended Search, Replace, Highlight and Match commands
 * Fanf,ingTastic; - FftT;, across lines
-* vim-KWEasy - Jump to any character on the screen
+* vim-KWEasy      - Jump to any character on the screen
 
 
 ##############################################################################
