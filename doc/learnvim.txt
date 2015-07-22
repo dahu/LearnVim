@@ -1299,11 +1299,157 @@ TODO
 ==============================================================================
 SEARCHING AND REPLACING                     *learnvim-searching-replacing*
 
-TODO
+Vim uses regular expressions (regex) for searching and replacing. And it uses
+its own regex flavour -- NOT PCRE. The technical details are covered in
+|pattern.txt|.
 
-/ ?
-:s
-:g
+                                                          *learnvim-magic*
+Magic~
+
+Regular expressions are designed for complex searches within text, requiring the
+use of several special characters to specify complex matches. These special
+characters do not represent their literal value but are considered to have
+"magical" meaning within the regex. For example, the `.` character does not
+match a '.' (period) but rather matches any single character (except for a
+newline). Vim has several magic modes but the beginner is strongly urged to use
+Vim's regular magic setting and experiment with the other modes after they have
+become comfortable and competent with the default.
+
+CAUTION:
+
+* Do not modify the |'magic'| setting; leave it as the default.
+* Do not use the |'gdefault'| setting.
+* Start by learning standard |/magic| mode in Vim's regular expressions.
+
+                                                      *learnvim-searching*
+Searching~
+
+To initiate a forward search in Vim, use |/|. Use |?| to search backwards from
+the cursor.
+
+
+Read |03.9| now to learn about three special characters (atoms) in regular
+expressions.
+
+Quiz~
+
+1. What were the three special atoms introduced in |03.9|?
+
+2. How would you search for a literal '.' character?
+
+3. What's the difference between |/| and |?|?
+
+Read |usr_27.txt| now for a more thorough coverage of searching with regex in
+Vim.
+
+Jump to your practice file now and try various search patterns. Try searching
+for special characters too -- remember how to represent them in a search
+pattern?
+See |setting-up-a-practice-file| if you haven't done so already.
+
+Quiz~
+
+1. Show two different ways to handle case matching (ignoring / honouring) with
+   Vim regexes.
+
+2. What is the option for allowing pattern searches to wrap around the
+   top/bottom of the buffer? When wouldn't you want this option enabled?
+
+3. How do you jump to the end of a pattern match?
+
+4. How do you simply repeat the prior search pattern? Show two ways. Consider
+   forward and backward solutions.
+
+5. '\n' and '\r' are not the same thing!
+    i. What's the difference between '\n' and '\r' in |/character-classes|?
+   ii. What's the story with '\n' and '\r' in |sub-replace-special|?
+  iii. Which one would you use to replace something with a newline?
+   iv. Which one would you use to match a newline?
+    v. Which one of the following splits colon separated pieces on the current
+       line into multiple lines.
+>
+         :s/:/\n/g
+         :s/:/\r/g
+<
+   vi. Which one of the following joins multiple lines together?
+>
+         :1,10 s/\n/ /
+         :1,10 s/\r/ /
+<
+  vii. Why is the `/g` flag useless here?
+>
+         :1,10 s/\n/ /g
+<
+
+Regex Tutor~
+
+https://github.com/dahu/VimRegexTutor will gently guide you through learning
+Vim's regular expression language more completely.
+
+                                                      *learnvim-replacing*
+Replacing~
+
+In Vim, "replacing" is performed with the |:substitute| command (often
+abbreviated to just |:s|):
+>
+  :s/from/to
+<
+Where `from` is a regular expression as covered in |learnvim-searching|.
+
+Jump to your practice file now and try a few |:s| commands.
+
+HINT: By default, the |:s| command acts on the current line only. You should
+practice using some ranges as covered earlier in |learnvim-ranges|.
+
+See |setting-up-a-practice-file| if you haven't done so already.
+
+
+Read |10.2| now to learn about simple search and replace in Vim.
+
+Quiz~
+
+1. We covered |learnvim-ranges| earlier.
+   i. What is a range?
+  ii. What range does '%' represent?
+ iii. How would I specify a range that covered the current cursor through to the
+      end of the buffer?
+
+2. All lines vs all occurrences on a line.
+   i. How do I perform a substitution on all lines in the file?
+  ii. How do I perform a substitution on all occurrences of the current line
+      only?
+ iii. How do I perform a substitution on all occurrences of all lines?
+
+3. How cool is the |:s_c| flag?
+
+Complex Replacements~
+
+Read |sub-replace-special| and then try various special replacements in your
+practice file.
+
+Quiz~
+
+1. How do you use the whole matched text in the replacement?
+
+2. How do you specify pieces to capture in the `from` part of |:substitute|?
+
+3. How do you refer to captured pieces in the `to` part?
+
+4. How would you swap every pair of 'word_1:word_2' in the file so that it
+   resulted in 'word_2:word_1'.
+
+5. How would you change the case of all words in a line to Title Case?
+
+Read |sub-replace-expression| and then try to use the `\=` replacement in your
+practice file.
+
+Quiz~
+
+1. How would you insert the line number at the start of every line in
+   the buffer?
+
+2. How would you number (starting from 1) a range of lines somewhere in a file?
+
 
 ==============================================================================
 FORMATTING AND INDENTING                          *learnvim-format-indent*
