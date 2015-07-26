@@ -1276,19 +1276,78 @@ QUIZ~
 ==============================================================================
 REGISTERS                                             *learnvim-registers*
 
+Registers are covered in sections |04.6| and |09.3| in the user manual.
 
-TODO
+Most applications use the "clipboard" to handle cut, copy and paste operations.
+In Vim, the location for such operations is not called the clipboard, but rather
+a "register". Vim has 48 such |registers| (and counting! -- A recently submitted
+patch proposes adding a new register to Vim that will hold the last |f||F||t|T|
+search).
 
-  - accessing "+ / "* for clipboard cut&paste
-  - :g/xyz/y A   <-- appending to a register
+The registers are accessed through the notation `"<register>` -- that is, in
+normal mode, press the double-quote key followed by the desired single-letter
+register identifier. For example, to delete the current word (|diw|) into
+register 'a', use: >
+  "adiw
+<
 
-:set paste and :set pastetoggle
+CLIPBOARD~
 
-or with :set mouse=a you can middle-click to paste without worrying about :set
-paste / nopaste / pastetoggle
+The |quotestar| ("*) register corresponds to the X selection buffer (pasted with
+<MiddleClick>), and the |quoteplus| ("+) register corresponds to the system
+clipboard (pasted with <C-v> or Edit->Paste). On windows, both registers are for
+the system clipboard. To use the clipboard in terminal vim, vim must be built
+with |+xterm_clipboard|.
 
-Note: You need a vim compiled with X11 for access to the clipboard (echo
-has('X11')) will show 1 if you do.
+To copy the whole buffer to the system clipboard, use: >
+  :%y+
+<
+
+Read |clipboard| for further details.
+
+OPTIONS~
+
+The following options influence register use in Vim:
+|'clipboard'|
+|'paste'|
+|'pastetoggle'|
+|'mouse'|
+
+With `:set mouse=a` you can middle-click to paste without worrying about setting
+paste / nopaste / pastetoggle.
+
+APPENDING~
+
+Using the lower-case form of the 26 named registers (a-z) will overwrite the
+register with the new content specified. Using the upper-case form (A-Z) will
+append instead. A common use for this is to combine it with the |:global|
+command (discussed later in |learnvim-large-edits|) as shown here: >
+  qaq:g/^\C[A-Z]\{2,}/y A
+<
+Will collect into register "a" all lines starting with two or more upper-case
+letters. This could be used in a Vim help file, for example, to quickly create a
+TOC from existing helpfile content.
+
+For more information on the commands used there, see |q| and |:yank|.
+NOTE: The idiom "qaq" is a quick way to clear register "a". Likewise, "qqq"
+clears register "q".
+
+SCRIPTING~
+
+In VimScript, access to the registers is via the `@` symbol instead of the `"`
+symbol because `"` is the comment character. You can assign to registers with
+the |:let-@| command. For example, to explicitly set the current search term,
+use: >
+  :let @/ = 'example'
+<
+You can assign to all of the named variables as well as the clipboard variables.
+If you have collected lines matching a pattern into register "a" and would like
+to paste that into an external application through the system clipboard, use: >
+  :let @+ = @a
+<
+
+An infographic on Vim's registers:
+http://of-vim-and-vigor.blogspot.sg/2012/01/rap-on-vims-registers.html
 
 
 ==============================================================================
