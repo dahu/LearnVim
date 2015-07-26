@@ -679,6 +679,7 @@ INTERMEDIATE TOPICS                         *lv_I* *learnvim-Intermediate*
 |learnvim-registers|              Registers
 |learnvim-ranges|                 Ranges
 |learnvim-searching-replacing|    Searching And Replacing
+|learnvim-large-edits|            Large Edits
 |learnvim-format-indent|          Formatting And Indenting
 |learnvim-tags|                   Tags
 |learnvim-quickfix|               Quickfix
@@ -870,9 +871,7 @@ QUIZ~
 ==============================================================================
 COMPLETION                                           *learnvim-completion*
 
-
 TODO
-
 
 ==============================================================================
 MARKS AND MARK MOTIONS                                    *learnvim-marks*
@@ -1284,17 +1283,23 @@ TODO
   - :g/xyz/y A   <-- appending to a register
 
 :set paste and :set pastetoggle
-or with :set mouse=a you can middle-click to paste without worrying about :set paste / nopaste / pastetoggle
-Note: You need a vim compiled with X11 for access to the clipboard (echo has('X11')) will show 1 if you do.
+
+or with :set mouse=a you can middle-click to paste without worrying about :set
+paste / nopaste / pastetoggle
+
+Note: You need a vim compiled with X11 for access to the clipboard (echo
+has('X11')) will show 1 if you do.
 
 
 ==============================================================================
 RANGES                                                   *learnvim-ranges*
 
-TODO
+Section |10.3| in the user manual covers |cmdline-ranges|.
 
+A good introduction to ranges: http://vim.wikia.com/wiki/Ranges
 
-* waz
+An infographic: http://of-vim-and-vigor.blogspot.sg/2012/02/vim-ranger.html
+
 
 ==============================================================================
 SEARCHING AND REPLACING                     *learnvim-searching-replacing*
@@ -1449,6 +1454,125 @@ Quiz~
    the buffer?
 
 2. How would you number (starting from 1) a range of lines somewhere in a file?
+
+
+==============================================================================
+LARGE EDITS                                         *learnvim-large-edits*
+
+Section |10.4| in the user manual covers the |:global| command discussed here.
+
+The |:substitute| command discussed in the prior section has the following
+form: >
+  :[range]s[ubstitute]/{from}/{to}/[flags]
+<
+where the default range is the current line only.
+
+The |:global| command has the following form: >
+  :[range]g[lobal]/{pattern}/{command}
+<
+where the default range is the whole buffer.
+
+The |:global| command takes three things:
+1. A range (defaulting to the whole buffer)
+2. A pattern to match lines within the specified range.
+3. A command to perform against every matched line.
+
+The following two commands are identical: >
+  :%s/foo/bar/g
+  :g/foo/s//bar/g
+<
+
+However the |:global| version is more flexible. Consider: >
+  :g!^\s*//!s!fahren/Fahren/g
+<
+Which corrects spelling mistakes in comments without disrupting code.
+
+So, one feature of |:global| is that it turns single-line commands into ranged
+commands, but that is its least useful attribute. The |:global| command actually
+accepts a set of |:bar| separated commands, allowing multiple operations on each
+match. Compare these two commands: >
+
+  :% substitute /apples/bananas/g | substitute /cherries/oranges/g
+
+  :global /apples\|cherries/ substitute /apples/bananas/g | substitute /cherries/oranges/g
+<
+The first command is probably not what the developer intended because
+|:substitute| does not take a set of commands, so the second substitute uses its
+default range, which is the current line. BUT BE CAREFUL: The current line is
+not what you think it is. The current line will be wherever the prior command
+leaves it. In the case given, it will be on the final line in the buffer that
+had "apples". IF that line also contained "cherries" THEN the second substitute
+would apply.
+
+GREP -- The Default Command~
+
+The default command for |:global| is |:print|, making the mnemonic:
+
+  :g/re/p
+
+Indeed, |:g| is very often used to quickly show lines from the current buffer
+that match a pattern, like: >
+  :g/^func
+<
+
+Any Command~
+
+The |:global| command can be used to execute any text editing |ex-cmd| which
+includes the |:normal| command for executing normal mode commands. This command
+lets you execute macros within the |:global| command. Example: >
+
+  :let @a = "0Wyiw:-pu\<CR>gcc"
+  :g/^func/normal @a
+<
+Assuming you had a macro in register "a" that duplicated the second word on a
+line into a comment line prior to it, then the global command shown will execute
+that macro on all function definitions in the buffer.
+
+NOTE: The `gcc` command there is from Tim Pope's Commentary plugin.
+      See |learnvim-commentary|.
+
+Deleting Blank Lines~
+>
+  :g/^$/d
+  :g/^\s*$/d
+<
+|:delete|
+
+Reversing Line Order~
+>
+  :g/^/m0
+<
+|:move|
+
+Move Matches To End Of File~
+>
+  :g/^func/m$
+<
+|move|
+
+Copy Matches To End Of File~
+>
+  :g/^func/t$
+<
+|:copy| |:t|
+
+Collect Matches Into Register A~
+>
+  qaq:g/^func/y A
+<
+|q| |:yank|
+NOTE: The idiom "qaq" is a quick way to clear register "a". Likewise, "qqq"
+clears register "q".
+
+Some more examples are shown at http://vim.wikia.com/wiki/Power_of_g
+
+                                                            *learnvim-waz*
+WAZ~
+
+http://dahu.github.io/vim_waz_ere/
+
+The Walter Alan Zintz Vim tutorial is a comprehensive exploration of the
+|:substitute| and |:global| commands. It has quizzes too!
 
 
 ==============================================================================
@@ -1807,8 +1931,8 @@ ADVANCED TOPICS                                 *lv_A* *learnvim-Advanced*
 Becomming a VimL Master~
 
 Everybody wants to be a grey-beard master vimmer, mind-wielding Vim like a
-jedi, jumping around buffers like vimjas and scripting changes like bitchin
-vizzards. With this path to VimL mastery, you too can be master of your Vim,
+jedi, jumping around buffers like vimjas and scripting changes like wicked
+vizzards. Walk this path to VimL mastery and be the victor of your Vim,
 envy of your peers, idol to your fans.
 
 Skill Progression: Trainee -> Novice -> Worker -> Professional -> Expert
@@ -2039,8 +2163,9 @@ command supports argument list buffer name completion.
 
 
 3. Additional Plugins Worth Looking At       *learnvim-Additional-Plugins*
-
+                                                     *learnvim-commentary*
 * Commentary      - Comment/uncomment code efficiently
+                    https://github.com/tpope/vim-commentary
 * Ultisnips       - Code Snippets
 * SearchParty     - Extended Search, Replace, Highlight and Match commands
 * Fanf,ingTastic; - FftT;, across lines
