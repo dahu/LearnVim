@@ -360,7 +360,7 @@ window		A window is a place where a buffer can be displayed.  There is
 		any number of windows simultaneously.  Having a buffer that
 		isn't displayed in a window is useful when switching between
 		different tasks, letting you walk away from half-finished work
-		(See |'hidden'|).  Having a buffer that is displayed in two
+		(See 'hidden').  Having a buffer that is displayed in two
 		windows can be useful when trying to work on one part of the
 		buffer based upon some context provided in another part of the
 		buffer that's far away.
@@ -980,10 +980,10 @@ commands for navigating between files. Use the method shown in
 Working Directory and Paths~
 
 Points of interest:
-|'path'|  |file-searching|
+'path'  |file-searching|
 |:cd|     |:lcd|     |:pwd|
 
-The default unix |'path'| is ".,/usr/include,," which is not terribly useful to
+The default unix 'path' is ".,/usr/include,," which is not terribly useful to
 many, especially if you're not a C programmer. Instead, use this as your default
 path:
 >
@@ -991,7 +991,7 @@ path:
 <
 And override it with more specific details on a per-project basis.
 
-The |:find| command searches your |'path'|, however it is still limited (like
+The |:find| command searches your 'path', however it is still limited (like
 the |:edit| command) to opening only one file at a time. Use the |:args| command
 to open multiple files simultaneously.
 
@@ -1014,7 +1014,7 @@ The Buffer List~
 Use the |:ls| command to show the list of buffers (files) that you're currently
 editing.
 
-If you have the |'hidden'| option enabled, you can have multiple modified
+If you have the 'hidden' option enabled, you can have multiple modified
 buffers open concurrently.
 
 Use the |:b| command to switch between buffers. You can use a buffer number, or
@@ -1199,7 +1199,7 @@ You would have found |:qall| and |:wall| in |08.6| but there was no mention
 there about performing an action other than closing or saving on all windows. To
 do this, we need to use the |:windo| command.
 
-|'colorcolumn'|, |'cursorcolumn'|, |'cursorline'|, |'list'|, |'number'| and
+'colorcolumn', 'cursorcolumn', 'cursorline', 'list', 'number' and
 those controlling |folding| are all examples of useful options to set for all
 windows simultaneously.
 
@@ -1220,8 +1220,8 @@ Statusline~
 Most applications have a statusline at the bottom of windows containing various
 pieces of useful information about current state. Vim provides this in two ways:
 
-1. The more simplistic |'ruler'|, and
-2. The more featureful |'statusline'|.
+1. The more simplistic 'ruler', and
+2. The more featureful 'statusline'.
 
 Scrooloose has a colourful introduction to Vim's statusline:
 http://got-ravings.blogspot.sg/2008/08/vim-pr0n-making-statuslines-that-own.html
@@ -1230,9 +1230,9 @@ A suggested statusline is:
 >
   set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]\%{&paste?'\ paste':''}%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
 <
-See |'statusline'| for details about the chosen options.
+See 'statusline' for details about the chosen options.
 
-NOTE: The |'laststatus'| option determins which windows show a statusline.
+NOTE: The 'laststatus' option determins which windows show a statusline.
       To see a statusline in all windows:
 >
         set laststatus=2
@@ -1308,10 +1308,10 @@ Read |clipboard| for further details.
 OPTIONS~
 
 The following options influence register use in Vim:
-|'clipboard'|
-|'paste'|
-|'pastetoggle'|
-|'mouse'|
+'clipboard'
+'paste'
+'pastetoggle'
+'mouse'
 
 With `:set mouse=a` you can middle-click to paste without worrying about setting
 paste / nopaste / pastetoggle.
@@ -1381,8 +1381,8 @@ become comfortable and competent with the default.
 
 CAUTION:
 
-* Do not modify the |'magic'| setting; leave it as the default.
-* Do not use the |'gdefault'| setting.
+* Do not modify the 'magic' setting; leave it as the default.
+* Do not use the 'gdefault' setting.
 * Start by learning standard |/magic| mode in Vim's regular expressions.
 
                                                       *learnvim-searching*
@@ -1637,10 +1637,118 @@ The Walter Alan Zintz Vim tutorial is a comprehensive exploration of the
 ==============================================================================
 FORMATTING AND INDENTING                          *learnvim-format-indent*
 
-TODO
+                                                     *learnvim-formatting*
+FORMATTING~
 
-gq
-=
+Formatting is the process of modifying the layout of a block of text to make it
+flow better. Adjusting a paragraph to have all lines wrapped at 'textwidth',
+indenting lines within a list and automatically prepending the comment leader
+are all examples of formatting.
+
+Vim provides several methods of reformatting your text. The commands and options
+are quickly covered here. Read more about this in:
+|formatting|
+|ins-textwidth|
+
+Automatic~
+
+Using the "a" value of 'formatoptions' will enable automatic formatting as you
+type. This can cause unexpected and unwanted modifications to the layout of your
+text and should only be used for non-code prose. Read |auto-format| for more
+details.
+
+Manual~
+
+Text~
+
+A common formatting action in word processors is to change the paragraph to:
+
+|:left| aligned.
+							       |:right| aligned.
+				Or |:center|ed.
+Programmers don't need this feature often, but it's nice to know Vim has it.
+
+The |gq| command will reformat the selected lines using either an internal
+algorithm, a script-defined expression (function) or an external tool.
+
+The |gw| command uses an internal algorithm to reformat the selected lines and
+puts the cursor back at the same position in the text afterwards.
+
+For a more comprehensive coverage of using Vim as a text (prose) writing tool,
+see http://www.drbunsen.org/writing-in-vim/
+
+Asciidoc ( http://asciidoc.org/ or http://asciidoctor.org/ ) is an excellent
+text processor. The https://github.com/dahu/vim-asciidoc plugin provides better
+formatting support among other features.
+
+Code~
+
+A more typical formatting requirement for programmers is to reflow or beautify
+code. If all you want to do is reindent your code nicely, see
+|learnvim-indenting|. If you want to alter the way parentheses and braces are
+used in expressions and blocks within your code, you will need either a plugin
+that provides the necessary 'formatexpr' or an external tool used by the
+'formatprg' option.
+
+On linux, the `indent` tool is one such example. Another is the Artistic Style
+tool: http://astyle.sourceforge.net/
+
+The following options are related to formatting:
+'textwidth'      The maximum width of the line as you're typing.
+'formatoptions'  Control how automatic formatting is done.
+'formatlistpat'  Support the "n" flag in 'formatoptions' for formatting lists.
+'formatprg'      An external program to format lines operated on by the |gq|
+                 command.
+'formatexpr'     An expression (function) to format lines operated on by the
+                 |gq| command.
+'paste'          Formatting is temporarily disabled while "paste" is enabled.
+
+
+                                                      *learnvim-indenting*
+INDENTING~
+
+Nicely indented code looks better, reads better and feels better. There are many
+tools available for reindenting source code. The `indent` tool for C style
+languages and the Artistic Style tool ( http://astyle.sourceforge.net/ ) are two
+examples. Search for an indent tool for your preferred language.
+
+Vim has built-in support for |C-indenting| and 'lisp'.
+
+Vim also supports indenting many languages through 'filetype' plugins. Make sure
+that the |:filetype| command says: >
+  filetype detection:ON  plugin:ON  indent:ON
+<
+and if it doesn't, add the following line to your $MYVIMRC: >
+  filetype plugin indent on
+<
+
+Use the |=| command to reindent lines within Vim. The |>>| and |<<| keys
+increase and decrease indent respectively.
+
+Some options related to indenting:
+'equalprg'    An external program to reindent lines operated on by the |=|
+              command.
+'indentexpr'  An expression (function) to reindent lines operated on by the
+              |=| command.
+'cindent'     Force Vim's internal indenting to C style (uses 'cinkeys' and
+              'cinoptions').
+'cinkeys'     Keys that trigger C style indenting.
+'cinoptions'  Options to control how C style code is indented.
+'autoindent'  A recommended option that provides good default indenting and is
+              used by many of the filetype-specific indent plugins.
+'smartindent' DEPRECATED. SHOULD NO LONGER BE USED. Use 'autoindent' and
+              "filetype plugin indent on" in your $MYVIMRC instead.
+'expandtab'
+'shiftwidth'  Default indent amount. Also affects |=|, |>>|, |<<|
+'tabstop'     Changes the width of the TAB character. You should usually leave
+              this as the industry default of 8 spaces.
+'softtabstop' Affects the <TAB> and <BS> keys.
+
+For the complete set of indenting options in Vim, see section 15 (Indenting and
+Tabs) in |:options|.
+
+A deeper introduction to indenting source code is covered in
+http://vim.wikia.com/wiki/Indenting_source_code .
 
 
 ==============================================================================
@@ -1663,12 +1771,12 @@ in the root of your project.
 
 But if you need anything fancier than that, consult  `man ctags`  for guidance.
 
-2. A correctly set |'tags'| option
+2. A correctly set 'tags' option
 
 The Vim default of "./tags,tags" is probably sufficient for most projects but
 you might want to include library tag files or a project-common tags file.
 
-3. A correctly set |'path'| option
+3. A correctly set 'path' option
 
 A good default is:
 >
@@ -1765,7 +1873,7 @@ QUIZ~
 
 1. What is a tag? Why are they useful?
 
-2. With respect to options like |'path'| and |'tags'| what do the following
+2. With respect to options like 'path' and 'tags' what do the following
    mean:
      i. .
     ii. *
@@ -2006,13 +2114,13 @@ Trainee~
 * Read the following parts of |options.txt|
 ** |set-option|
 ** The following specific options:
-*** |'debug'|
-*** |'eventignore'|
-*** |'ignorecase'|
-*** |'magic'|
-*** |'maxfuncdepth'|
-*** |'runtimepath'|
-*** |'verbose'|
+*** 'debug'
+*** 'eventignore'
+*** 'ignorecase'
+*** 'magic'
+*** 'maxfuncdepth'
+*** 'runtimepath'
+*** 'verbose'
 
 * Read all of |pattern.txt|
 
@@ -2046,9 +2154,9 @@ Novice~
 
 * Read |map.txt|
 
-* Read |'timeout'| option
+* Read 'timeout' option
 
-* Read |'maxmapdepth'| option
+* Read 'maxmapdepth' option
 
 * Read |usr_40.txt|
 
@@ -2194,7 +2302,7 @@ index by enabling the :setlocal number option. When you press <enter> in this
 scratch buffer, VFM will set your argument list to these files, in this order.
 
 The |:VFMEdit| command (mapped to <leader>ge by default.) lets you filter a
-find result on your |'path'| option. If you press |<enter>| on a file from this
+find result on your 'path' option. If you press |<enter>| on a file from this
 window, it will be opened as a new buffer (but not added to your argument
 list). If you'd like to set your argument list to the files in the VFM scratch
 window, type:
