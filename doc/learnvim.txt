@@ -13,6 +13,9 @@ This is not a typical tutorial for Vim in that many topics are merely
 introduced here with further study deferred to the excellent Vim Reference
 Guide (|reference_toc|) and User Manual (|usr-toc|).
 
+NOTE: If you would like to view this help file in full-screen instead of the
+split window that Vim shows for help files by default, type `:only` now.
+
 
 ##############################################################################
 THE VIM LEARNING PATH                             *learnvim-path-overview*
@@ -58,7 +61,18 @@ way to search for information within the help system.
 1. Learning how to use Vim's Help        *learnvim-essential-introduction*
 
 To read a help topic, move your cursor to that topic and type |ctrl-]|.  To
-return to where you came from, type |ctrl-t|.  Try that now by reading the
+return to where you came from, type |ctrl-t|.  Try that now by reading the help
+for the command I showed you at the very beginning of this tutorial: |:only|.
+
+QUIZ~
+
+1. What are the two equivalent keyboard shortcuts for the |:only| command?
+
+2. Do you like being quizzed on material as you're learning?
+     i. Did you know that quizes increase retention by requiring recall?
+
+
+Now continue to practice your |ctrl-]| and |ctrl-t| skills by reading the
 next three essential (and brief) help topics.  You will think I jest when I
 say that a 200 line help file is brief, but I don't actually want you to read
 -all- of that file -- just the first section.  Sections are shown in red (with
