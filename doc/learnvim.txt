@@ -11,7 +11,7 @@ topics for the enthusiastic newcomer to study and practice.
 
 This is not a typical tutorial for Vim in that many topics are merely
 introduced here with further study deferred to the excellent Vim Reference
-Guide (|reference_toc|) and User Manual (|usr-toc|).
+Guide (|reference_toc|) and User Manual (|usr_toc|).
 
 NOTE: If you would like to view this help file in full-screen instead of the
 split window that Vim shows for help files by default, type `:only` now.
