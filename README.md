@@ -1,6 +1,6 @@
 # The Way of the Vim Warrior
 
-A suggested path for learning Vim
+A suggested path for learning *Vim*.
 
 > TIP: If you like LearnVim and want to share the W00t!, I'm grateful for
 [tips](https://www.gittip.com/bairuidahu/) or
