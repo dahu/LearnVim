@@ -10,15 +10,17 @@ This help file introduces fundamental concepts, offers concrete advice for
 correctly configuring a new *Vim* instance and outlines a progressive set of
 topics for the enthusiastic newcomer to study and practise.
 
-## Install
+## Quick Install
 
 - *Linux* / *OS X* users
 
-  Copy [`doc/learnvim.txt`](doc/learnvim.txt) to your `~/.vim/doc/` directory.
+  Copy
+  [`doc/learnvim.txt`](http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt) to your `~/.vim/doc/` directory.
 
 - *Windows* users
 
-  Copy [`doc/learnvim.txt`](doc/learnvim.txt) to your `$HOME\vimfiles\doc\` directory.
+  Copy [`doc/learnvim.txt`](http://github.com/dahu/LearnVim/raw/master/doc/learnvim.txt) to your `$HOME\vimfiles\doc\` directory.
 
-Run  `:helptags ~/.vim/doc/` from within *Vim*.  
+Type `:helptags ~/.vim/doc/` from within *Vim*.
+
 Type `:help learnvim` to get started.
